@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>799917472062-56si6s42lrrjka150qp88k4inr01oq5i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.799917472062-56si6s42lrrjka150qp88k4inr01oq5i</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>799917472062-k1jhed4modj16c0ocfqo2909kr4jq4qt.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBKJaxpHCYrVEvPeclMzlpvOBwM67xrJGE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>799917472062</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.moviea</string>
+	<key>PROJECT_ID</key>
+	<string>movia-2dfed</string>
+	<key>STORAGE_BUCKET</key>
+	<string>movia-2dfed.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:799917472062:ios:2ead2279c72d0a2f86146f</string>
+</dict>
+</plist>
