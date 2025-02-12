@@ -103,7 +103,7 @@ class _MyAppState extends State<MyApp> {
             )
           : currentUser!.loggedIn
               ? NavBarPage()
-              : MoviesViewWidget(),
+              : OnboardingWidget(),
     );
   }
 }
@@ -134,8 +134,8 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Home': HomeWidget(),
-      'Search': SearchWidget(),
       'Activity': ActivityWidget(),
+      'SeriesTitleView': SeriesTitleViewWidget(),
       'Profile': ProfileWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -165,18 +165,18 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              FFIcons.knameSearch,
-              size: 24.0,
-            ),
-            label: 'Search',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               FFIcons.knameHeart,
               size: 24.0,
             ),
             label: 'Activity',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.movie_outlined,
+              size: 24.0,
+            ),
+            label: 'Movies',
             tooltip: '',
           ),
           BottomNavigationBarItem(

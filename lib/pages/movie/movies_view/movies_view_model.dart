@@ -1,5 +1,5 @@
+import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/video_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -16,6 +16,18 @@ class MoviesViewModel extends FlutterFlowModel<MoviesViewWidget> {
   ///  Local state fields for this page.
 
   bool isLoading = false;
+
+  List<VideoItemStruct> fetchedVideos = [];
+  void addToFetchedVideos(VideoItemStruct item) => fetchedVideos.add(item);
+  void removeFromFetchedVideos(VideoItemStruct item) =>
+      fetchedVideos.remove(item);
+  void removeAtIndexFromFetchedVideos(int index) =>
+      fetchedVideos.removeAt(index);
+  void insertAtIndexInFetchedVideos(int index, VideoItemStruct item) =>
+      fetchedVideos.insert(index, item);
+  void updateFetchedVideosAtIndex(
+          int index, Function(VideoItemStruct) updateFn) =>
+      fetchedVideos[index] = updateFn(fetchedVideos[index]);
 
   ///  State fields for stateful widgets in this page.
 

@@ -37,7 +37,7 @@ class _BunnyChewiePlayerState extends State<BunnyChewiePlayer> {
     return SizedBox(
       height: 200,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(0),
         child: Video(
           videoPlayerController: VideoPlayerController.networkUrl(
             Uri.parse(
@@ -82,10 +82,10 @@ class _VideoState extends State<Video> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       width: double.infinity,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(0),
         child: Chewie(controller: _chewieController),
       ),
     );

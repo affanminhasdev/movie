@@ -14,11 +14,17 @@ class VideoItemStruct extends FFFirebaseStruct {
     String? guid,
     String? title,
     int? views,
+    String? dateUploaded,
+    String? thumbnailFileName,
+    int? length,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _videoLibraryId = videoLibraryId,
         _guid = guid,
         _title = title,
         _views = views,
+        _dateUploaded = dateUploaded,
+        _thumbnailFileName = thumbnailFileName,
+        _length = length,
         super(firestoreUtilData);
 
   // "videoLibraryId" field.
@@ -54,11 +60,37 @@ class VideoItemStruct extends FFFirebaseStruct {
 
   bool hasViews() => _views != null;
 
+  // "dateUploaded" field.
+  String? _dateUploaded;
+  String get dateUploaded => _dateUploaded ?? '';
+  set dateUploaded(String? val) => _dateUploaded = val;
+
+  bool hasDateUploaded() => _dateUploaded != null;
+
+  // "thumbnailFileName" field.
+  String? _thumbnailFileName;
+  String get thumbnailFileName => _thumbnailFileName ?? '';
+  set thumbnailFileName(String? val) => _thumbnailFileName = val;
+
+  bool hasThumbnailFileName() => _thumbnailFileName != null;
+
+  // "length" field.
+  int? _length;
+  int get length => _length ?? 0;
+  set length(int? val) => _length = val;
+
+  void incrementLength(int amount) => length = length + amount;
+
+  bool hasLength() => _length != null;
+
   static VideoItemStruct fromMap(Map<String, dynamic> data) => VideoItemStruct(
         videoLibraryId: castToType<int>(data['videoLibraryId']),
         guid: data['guid'] as String?,
         title: data['title'] as String?,
         views: castToType<int>(data['views']),
+        dateUploaded: data['dateUploaded'] as String?,
+        thumbnailFileName: data['thumbnailFileName'] as String?,
+        length: castToType<int>(data['length']),
       );
 
   static VideoItemStruct? maybeFromMap(dynamic data) => data is Map
@@ -70,6 +102,9 @@ class VideoItemStruct extends FFFirebaseStruct {
         'guid': _guid,
         'title': _title,
         'views': _views,
+        'dateUploaded': _dateUploaded,
+        'thumbnailFileName': _thumbnailFileName,
+        'length': _length,
       }.withoutNulls;
 
   @override
@@ -86,12 +121,22 @@ class VideoItemStruct extends FFFirebaseStruct {
         videoLibraryId == other.videoLibraryId &&
         guid == other.guid &&
         title == other.title &&
-        views == other.views;
+        views == other.views &&
+        dateUploaded == other.dateUploaded &&
+        thumbnailFileName == other.thumbnailFileName &&
+        length == other.length;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([videoLibraryId, guid, title, views]);
+  int get hashCode => const ListEquality().hash([
+        videoLibraryId,
+        guid,
+        title,
+        views,
+        dateUploaded,
+        thumbnailFileName,
+        length
+      ]);
 }
 
 VideoItemStruct createVideoItemStruct({
@@ -99,6 +144,9 @@ VideoItemStruct createVideoItemStruct({
   String? guid,
   String? title,
   int? views,
+  String? dateUploaded,
+  String? thumbnailFileName,
+  int? length,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -109,6 +157,9 @@ VideoItemStruct createVideoItemStruct({
       guid: guid,
       title: title,
       views: views,
+      dateUploaded: dateUploaded,
+      thumbnailFileName: thumbnailFileName,
+      length: length,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

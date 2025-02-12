@@ -14,4 +14,8 @@ export '/pages/bookark/bookark_widget.dart' show BookarkWidget;
 export '/pages/history/history_widget.dart' show HistoryWidget;
 export '/pages/settings/settings_widget.dart' show SettingsWidget;
 export '/pages/subscribtion/subscribtion_widget.dart' show SubscribtionWidget;
-export '/pages/movies_view/movies_view_widget.dart' show MoviesViewWidget;
+export '/pages/movie/movies_view/movies_view_widget.dart' show MoviesViewWidget;
+export '/pages/movie/movie_detail_view/movie_detail_view_widget.dart'
+    show MovieDetailViewWidget;
+export '/pages/movie/series_title_view/series_title_view_widget.dart'
+    show SeriesTitleViewWidget;

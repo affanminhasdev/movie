@@ -1,5 +1,5 @@
+import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/video_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -35,6 +35,8 @@ class _MoviesViewWidgetState extends State<MoviesViewWidget> {
       _model.isLoading = true;
       safeSetState(() {});
       _model.videos = await actions.fetchBunnyVideos();
+      _model.fetchedVideos = _model.videos!.toList().cast<VideoItemStruct>();
+      safeSetState(() {});
       _model.isLoading = false;
       safeSetState(() {});
     });
@@ -60,7 +62,7 @@ class _MoviesViewWidgetState extends State<MoviesViewWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(12.0, 20.0, 12.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +71,7 @@ class _MoviesViewWidgetState extends State<MoviesViewWidget> {
                   'Watch Movies',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Poppins',
-                        color: Colors.white,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         fontSize: 19.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
@@ -82,7 +84,7 @@ class _MoviesViewWidgetState extends State<MoviesViewWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                       child: Builder(
                         builder: (context) {
-                          final video = _model.videos!.toList();
+                          final video = _model.fetchedVideos.toList();
 
                           return ListView.builder(
                             padding: EdgeInsets.zero,
@@ -91,15 +93,8 @@ class _MoviesViewWidgetState extends State<MoviesViewWidget> {
                             itemCount: video.length,
                             itemBuilder: (context, videoIndex) {
                               final videoItem = video[videoIndex];
-                              return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 15.0),
-                                child: VideoComponentWidget(
-                                  key: Key(
-                                      'Key70w_${videoIndex}_of_${video.length}'),
-                                  videoItem: videoItem,
-                                ),
-                              );
+                              return Container(
+                                  width: 100, height: 100, color: Colors.green);
                             },
                           );
                         },
