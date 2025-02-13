@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/main.dart';
+import '/pages/home/home_widget.dart';
 import '/pages/sign_up/sign_up_widget.dart';
 import 'dart:ui';
 import 'sign_in_widget.dart' show SignInWidget;

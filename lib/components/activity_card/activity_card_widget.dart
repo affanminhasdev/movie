@@ -1,7 +1,10 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/movie/movie_detail_view/movie_detail_view_widget.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'activity_card_model.dart';
@@ -10,14 +13,10 @@ export 'activity_card_model.dart';
 class ActivityCardWidget extends StatefulWidget {
   const ActivityCardWidget({
     super.key,
-    this.image,
-    this.title,
-    this.subtitle,
+    required this.series,
   });
 
-  final String? image;
-  final String? title;
-  final String? subtitle;
+  final SeriesRow? series;
 
   @override
   State<ActivityCardWidget> createState() => _ActivityCardWidgetState();
@@ -47,62 +46,82 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(12.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                widget!.image!,
-                width: 96.0,
-                height: 56.0,
-                fit: BoxFit.cover,
-              ),
+    return InkWell(
+      splashColor: Colors.transparent,
+      focusColor: Colors.transparent,
+      hoverColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onTap: () async {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MovieDetailViewWidget(
+              seriesData: widget!.series,
             ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget!.title!,
-                      style: FlutterFlowTheme.of(context).bodySmall.override(
-                            fontFamily: 'Poppins',
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                      child: Text(
-                        widget!.subtitle!,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    ),
-                  ],
+          ),
+        );
+      },
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).secondaryBackground,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(12.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  widget!.series!.thumbnail!,
+                  width: 96.0,
+                  height: 56.0,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-            Icon(
-              FFIcons.knameRightArrow2,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 24.0,
-            ),
-          ],
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        valueOrDefault<String>(
+                          widget!.series?.title,
+                          'Title',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              fontFamily: 'Poppins',
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                        child: Text(
+                          'released on ${dateTimeFormat("yMMMd", widget!.series?.createdAt)}',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Poppins',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Icon(
+                FFIcons.knameRightArrow2,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 24.0,
+              ),
+            ],
+          ),
         ),
       ),
     );

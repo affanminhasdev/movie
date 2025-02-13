@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/main.dart';
+import '/pages/home/home_widget.dart';
 import '/pages/sign_up/sign_up_widget.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -163,8 +164,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    NavBarPage(initialPage: 'Home'),
+                                builder: (context) => HomeWidget(),
                               ),
                             );
                           },
@@ -274,7 +274,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  NavBarPage(initialPage: 'Home'),
+                                  NavBarPage(initialPage: 'SeriesTitleView'),
                             ),
                             (r) => false,
                           );

@@ -1,3 +1,5 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/components/activity_card/activity_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -64,62 +66,80 @@ class _ActivityWidgetState extends State<ActivityWidget> {
           top: true,
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: wrapWithModel(
-                    model: _model.activityCardModel1,
-                    updateCallback: () => safeSetState(() {}),
-                    child: ActivityCardWidget(
-                      image:
-                          'https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/27Mj3rFYP3xqFy7lnz17vEd8Ms.jpg',
-                      title: 'The Gray Man',
-                      subtitle: 'relased in 07/13/2022 ',
-                    ),
-                  ),
+            child: FutureBuilder<List<ActivityRow>>(
+              future: ActivityTable().queryRows(
+                queryFn: (q) => q.eqOrNull(
+                  'user_id',
+                  currentUserUid,
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: wrapWithModel(
-                    model: _model.activityCardModel2,
-                    updateCallback: () => safeSetState(() {}),
-                    child: ActivityCardWidget(
-                      image:
-                          'https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/AnfXhKJwb9rBa8cvPBV54XgJxMF.jpg',
-                      title: 'Pantanal',
-                      subtitle: 'E02 of S05 released.',
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 40.0,
+                      height: 40.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: wrapWithModel(
-                    model: _model.activityCardModel3,
-                    updateCallback: () => safeSetState(() {}),
-                    child: ActivityCardWidget(
-                      image:
-                          'https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/AfvIjhDu9p64jKcmohS4hsPG95Q.jpg',
-                      title: 'The Black Phone ',
-                      subtitle: 'relased in 07/13/2022 ',
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: wrapWithModel(
-                    model: _model.activityCardModel4,
-                    updateCallback: () => safeSetState(() {}),
-                    child: ActivityCardWidget(
-                      image:
-                          'https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/sIRK4NYe1OK2hOJAg4xxuxzceKk.jpg',
-                      title: '2 Good 2 Be True',
-                      subtitle: 'E22 of S01 released.',
-                    ),
-                  ),
-                ),
-              ],
+                  );
+                }
+                List<ActivityRow> columnActivityRowList = snapshot.data!;
+
+                return Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: List.generate(columnActivityRowList.length,
+                      (columnIndex) {
+                    final columnActivityRow =
+                        columnActivityRowList[columnIndex];
+                    return Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                      child: FutureBuilder<List<SeriesRow>>(
+                        future: SeriesTable().querySingleRow(
+                          queryFn: (q) => q.eqOrNull(
+                            'id',
+                            columnActivityRow.seriesId,
+                          ),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 40.0,
+                                height: 40.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<SeriesRow> activityCardSeriesRowList =
+                              snapshot.data!;
+
+                          final activityCardSeriesRow =
+                              activityCardSeriesRowList.isNotEmpty
+                                  ? activityCardSeriesRowList.first
+                                  : null;
+
+                          return ActivityCardWidget(
+                            key: Key(
+                                'Keyjwn_${columnIndex}_of_${columnActivityRowList.length}'),
+                            series: activityCardSeriesRow!,
+                          );
+                        },
+                      ),
+                    );
+                  }),
+                );
+              },
             ),
           ),
         ),
