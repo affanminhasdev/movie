@@ -1,51 +1,26 @@
 {
   "project_info": {
-    "project_number": "799917472062",
-    "project_id": "movia-2dfed",
-    "storage_bucket": "movia-2dfed.appspot.com"
+    "project_number": "374295366836",
+    "project_id": "pp-analytics-3c17a",
+    "storage_bucket": "pp-analytics-3c17a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:799917472062:android:2e55b6892cbbfaaa86146f",
+        "mobilesdk_app_id": "1:374295366836:android:5975a1bd5a282d62281be1",
         "android_client_info": {
-          "package_name": "com.moviea"
+          "package_name": "com.patakaplay.app"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "799917472062-k1jhed4modj16c0ocfqo2909kr4jq4qt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.moviea",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "799917472062-r7t8n3ueirtjvi88ajfn864o9s9v7t9p.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBEvSJcF7D7r982PHbRpS6C8IT6aK6CGgg"
+          "current_key": "AIzaSyBl81pe9PEzP8C-1_lY6KINwA4jSRYUaAk"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "799917472062-r7t8n3ueirtjvi88ajfn864o9s9v7t9p.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "799917472062-56si6s42lrrjka150qp88k4inr01oq5i.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.moviea"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

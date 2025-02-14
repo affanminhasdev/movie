@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/activity_card/activity_card_widget.dart';
+import '/components/no_data_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -89,6 +90,16 @@ class _ActivityWidgetState extends State<ActivityWidget> {
                   );
                 }
                 List<ActivityRow> columnActivityRowList = snapshot.data!;
+
+                if (columnActivityRowList.isEmpty) {
+                  return Container(
+                    width: double.infinity,
+                    height: 100.0,
+                    child: NoDataWidget(
+                      title: 'No Activity Found',
+                    ),
+                  );
+                }
 
                 return Column(
                   mainAxisSize: MainAxisSize.max,

@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    userStream = movieTemplateSupabaseUserStream()
+    userStream = patakaPlaySupabaseUserStream()
       ..listen((user) {
         initialUser ?? safeSetState(() => initialUser = user);
       });
@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Movie Template',
+      title: 'Pataka Play',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

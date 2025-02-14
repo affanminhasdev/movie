@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class MovieTemplateSupabaseUser extends BaseAuthUser {
-  MovieTemplateSupabaseUser(this.user);
+class PatakaPlaySupabaseUser extends BaseAuthUser {
+  PatakaPlaySupabaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -66,7 +66,7 @@ class MovieTemplateSupabaseUser extends BaseAuthUser {
 /// [SupaFlow.client.auth.onAuthStateChange] does not yield any values until the
 /// user is already authenticated. So we add a default null user to the stream,
 /// if we need to interact with the [currentUser] before logging in.
-Stream<BaseAuthUser> movieTemplateSupabaseUserStream() {
+Stream<BaseAuthUser> patakaPlaySupabaseUserStream() {
   final supabaseAuthStream = SupaFlow.client.auth.onAuthStateChange.debounce(
       (authState) => authState.event == AuthChangeEvent.tokenRefreshed
           ? TimerStream(authState, Duration(seconds: 1))
@@ -76,7 +76,7 @@ Stream<BaseAuthUser> movieTemplateSupabaseUserStream() {
           : supabaseAuthStream)
       .map<BaseAuthUser>(
     (authState) {
-      currentUser = MovieTemplateSupabaseUser(authState?.session?.user);
+      currentUser = PatakaPlaySupabaseUser(authState?.session?.user);
       return currentUser!;
     },
   );

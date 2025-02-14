@@ -18,10 +18,10 @@
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint --max-warnings=0 .",
-    "serve": "firebase -P movia-2dfed emulators:start --only functions",
-    "shell": "firebase -P movia-2dfed functions:shell",
+    "serve": "firebase -P pp-analytics-3c17a emulators:start --only functions",
+    "shell": "firebase -P pp-analytics-3c17a functions:shell",
     "start": "npm run shell",
-    "logs": "firebase -P movia-2dfed functions:log",
+    "logs": "firebase -P pp-analytics-3c17a functions:log",
     "compile": "cp ../../tsconfig.template.json ./tsconfig-compile.json && tsc --project tsconfig-compile.json"
   },
   "engines": {
