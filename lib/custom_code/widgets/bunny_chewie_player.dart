@@ -8,11 +8,14 @@ import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
+
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 
 class BunnyChewiePlayer extends StatefulWidget {
   const BunnyChewiePlayer({
@@ -32,6 +35,20 @@ class BunnyChewiePlayer extends StatefulWidget {
 
 class _BunnyChewiePlayerState extends State<BunnyChewiePlayer> {
   String pullZoneUrl = 'vz-06f108ac-a1b';
+  //String videoPath = '/${widget.video.guid}/playlist.m3u8';
+  //String token = generateBunnyToken(videoPath, secretKey);
+
+  String get videoPath => '/${widget.video.guid}/playlist.m3u8';
+  String get token => generateBunnyToken(videoPath, '8f73ac49-c221-4eed-92ad-8a82ede50026');
+
+  String generateBunnyToken(String urlPath, String secretKey) {
+    final expiry = DateTime.now().add(Duration(hours: 1)).millisecondsSinceEpoch ~/ 1000;
+    final hash = Hmac(sha256, utf8.encode(secretKey))
+        .convert(utf8.encode('$urlPath$expiry'))
+        .toString();
+    return '$hash$expiry';
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,7 +58,15 @@ class _BunnyChewiePlayerState extends State<BunnyChewiePlayer> {
         child: Video(
           videoPlayerController: VideoPlayerController.networkUrl(
             Uri.parse(
-                "https://$pullZoneUrl.b-cdn.net/${widget.video.guid}/playlist.m3u8"),
+              "https://$pullZoneUrl.b-cdn.net/${widget.video.guid}/playlist.m3u8",
+              //"https://vz-06f108ac-a1b.b-cdn.net/c5563ca4-66bc-452f-945e-0c9b59fa35be/playlist.m3u8",
+              //"https://$pullZoneUrl.b-cdn.net$videoPath?token=$token",
+              //"https://iframe.mediadelivery.net/play/379807/c5563ca4-66bc-452f-945e-0c9b59fa35be",
+            ),
+            // httpHeaders: {
+            //   'Accept': 'application/json',
+            //   'AccessKey': '8f73ac49-c221-4eed-92ad-8a82ede50026',
+            // },
           ),
           loop: false,
         ),

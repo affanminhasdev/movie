@@ -502,7 +502,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         final tvshows = getJsonField(
                           listViewTvShowsOnAirResponse.jsonBody,
                           r'''$.results''',
-                        ).toList().take(8).toList();
+                        );
 
                         return ListView.builder(
                           padding: EdgeInsets.zero,
@@ -650,7 +650,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         final popularMovies = getJsonField(
                           listViewPopularMoviesResponse.jsonBody,
                           r'''$.results''',
-                        ).toList().take(8).toList();
+                        );
 
                         return ListView.builder(
                           padding: EdgeInsets.zero,
