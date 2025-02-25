@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'index.dart';
+import 'flutter_flow/revenue_cat_util.dart' as revenue_cat;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,13 @@ void main() async {
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  await revenue_cat.initialize(
+    "",
+    "goog_cQrLlvHSYxVWqoYcBUxCzrURHRR",
+    debugLogEnabled: true,
+    loadDataAfterLaunch: true,
+  );
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -71,6 +79,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Pataka Play',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -89,14 +98,14 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Builder(
-              builder: (context) => Center(
-                child: SizedBox(
-                  width: 40.0,
-                  height: 40.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
-                    ),
+              builder: (context) => Container(
+                color: FlutterFlowTheme.of(context).secondary,
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/pataka_logo.png',
+                    width: 120.0,
+                    height: 120.0,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

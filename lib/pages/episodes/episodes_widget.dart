@@ -22,6 +22,9 @@ class EpisodesWidget extends StatefulWidget {
   final int? seasonNum;
   final String? seasonName;
 
+  static String routeName = 'Episodes';
+  static String routePath = '/episodes';
+
   @override
   State<EpisodesWidget> createState() => _EpisodesWidgetState();
 }

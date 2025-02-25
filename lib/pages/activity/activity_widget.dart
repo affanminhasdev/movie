@@ -15,6 +15,9 @@ export 'activity_model.dart';
 class ActivityWidget extends StatefulWidget {
   const ActivityWidget({super.key});
 
+  static String routeName = 'Activity';
+  static String routePath = '/activity';
+
   @override
   State<ActivityWidget> createState() => _ActivityWidgetState();
 }
@@ -101,54 +104,56 @@ class _ActivityWidgetState extends State<ActivityWidget> {
                   );
                 }
 
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: List.generate(columnActivityRowList.length,
-                      (columnIndex) {
-                    final columnActivityRow =
-                        columnActivityRowList[columnIndex];
-                    return Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                      child: FutureBuilder<List<SeriesRow>>(
-                        future: SeriesTable().querySingleRow(
-                          queryFn: (q) => q.eqOrNull(
-                            'id',
-                            columnActivityRow.seriesId,
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(columnActivityRowList.length,
+                        (columnIndex) {
+                      final columnActivityRow =
+                          columnActivityRowList[columnIndex];
+                      return Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                        child: FutureBuilder<List<SeriesRow>>(
+                          future: SeriesTable().querySingleRow(
+                            queryFn: (q) => q.eqOrNull(
+                              'id',
+                              columnActivityRow.seriesId,
+                            ),
                           ),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 40.0,
-                                height: 40.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 40.0,
+                                  height: 40.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
                                   ),
                                 ),
-                              ),
+                              );
+                            }
+                            List<SeriesRow> activityCardSeriesRowList =
+                                snapshot.data!;
+
+                            final activityCardSeriesRow =
+                                activityCardSeriesRowList.isNotEmpty
+                                    ? activityCardSeriesRowList.first
+                                    : null;
+
+                            return ActivityCardWidget(
+                              key: Key(
+                                  'Keyjwn_${columnIndex}_of_${columnActivityRowList.length}'),
+                              series: activityCardSeriesRow!,
                             );
-                          }
-                          List<SeriesRow> activityCardSeriesRowList =
-                              snapshot.data!;
-
-                          final activityCardSeriesRow =
-                              activityCardSeriesRowList.isNotEmpty
-                                  ? activityCardSeriesRowList.first
-                                  : null;
-
-                          return ActivityCardWidget(
-                            key: Key(
-                                'Keyjwn_${columnIndex}_of_${columnActivityRowList.length}'),
-                            series: activityCardSeriesRow!,
-                          );
-                        },
-                      ),
-                    );
-                  }),
+                          },
+                        ),
+                      );
+                    }),
+                  ),
                 );
               },
             ),

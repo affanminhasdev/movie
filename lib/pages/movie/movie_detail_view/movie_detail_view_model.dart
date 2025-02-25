@@ -8,6 +8,7 @@ import '/pages/movie/movie_detail_view/movie_detail_view_widget.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'movie_detail_view_widget.dart' show MovieDetailViewWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

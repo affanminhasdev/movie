@@ -76,7 +76,10 @@ class _SubscriptionCardWidgetState extends State<SubscriptionCardWidget> {
                 ),
           ),
           Text(
-            widget!.price!,
+            valueOrDefault<String>(
+              widget!.price,
+              '4.99/mo',
+            ),
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Poppins',
                   letterSpacing: 0.0,

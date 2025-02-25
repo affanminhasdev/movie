@@ -12,6 +12,9 @@ export 'bookark_model.dart';
 class BookarkWidget extends StatefulWidget {
   const BookarkWidget({super.key});
 
+  static String routeName = 'Bookark';
+  static String routePath = '/bookark';
+
   @override
   State<BookarkWidget> createState() => _BookarkWidgetState();
 }

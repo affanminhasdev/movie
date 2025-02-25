@@ -1,19 +1,28 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/movie/movie_detail_view/movie_detail_view_widget.dart';
 import 'dart:ui';
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:text_search/text_search.dart';
 import 'series_title_view_model.dart';
 export 'series_title_view_model.dart';
 
 class SeriesTitleViewWidget extends StatefulWidget {
   const SeriesTitleViewWidget({super.key});
+
+  static String routeName = 'SeriesTitleView';
+  static String routePath = '/seriesTitleView';
 
   @override
   State<SeriesTitleViewWidget> createState() => _SeriesTitleViewWidgetState();
@@ -28,6 +37,20 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SeriesTitleViewModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.isLoading = true;
+      safeSetState(() {});
+      _model.allSeries = await SeriesTable().queryRows(
+        queryFn: (q) => q.order('id', ascending: true),
+      );
+      _model.isLoading = false;
+      safeSetState(() {});
+    });
+
+    _model.searchSeriesTextController ??= TextEditingController();
+    _model.searchSeriesFocusNode ??= FocusNode();
   }
 
   @override
@@ -52,129 +75,344 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    'assets/images/pataka_logo.png',
-                    width: 100.0,
-                    height: 100.0,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  child: FutureBuilder<List<SeriesRow>>(
-                    future: SeriesTable().queryRows(
-                      queryFn: (q) => q,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 40.0,
-                            height: 40.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
+              if (!_model.isLoading)
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/pataka_logo.png',
+                              width: 100.0,
+                              height: 100.0,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                        );
-                      }
-                      List<SeriesRow> columnSeriesRowList = snapshot.data!;
-
-                      return SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(columnSeriesRowList.length,
-                              (columnIndex) {
-                            final columnSeriesRow =
-                                columnSeriesRowList[columnIndex];
-                            return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 15.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await ActivityTable().insert({
-                                    'created_at': supaSerialize<DateTime>(
-                                        getCurrentTimestamp),
-                                    'series_id': columnSeriesRow.id,
-                                    'user_id': currentUserUid,
-                                  });
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          MovieDetailViewWidget(
-                                        seriesData: columnSeriesRow,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 250.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(18.0),
-                                        child: CachedNetworkImage(
-                                          fadeInDuration:
-                                              Duration(milliseconds: 500),
-                                          fadeOutDuration:
-                                              Duration(milliseconds: 500),
-                                          imageUrl: columnSeriesRow.thumbnail!,
-                                          width: double.infinity,
-                                          height: 200.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 15.0, 0.0, 0.0),
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            columnSeriesRow.title,
-                                            'Series',
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
                         ),
-                      );
-                    },
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              18.0, 0.0, 18.0, 0.0),
+                          child: TextFormField(
+                            controller: _model.searchSeriesTextController,
+                            focusNode: _model.searchSeriesFocusNode,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.searchSeriesTextController',
+                              Duration(milliseconds: 2000),
+                              () async {
+                                safeSetState(() {
+                                  _model.simpleSearchResults = TextSearch(_model
+                                          .allSeries!
+                                          .map((e) => e.title)
+                                          .withoutNulls
+                                          .toList()
+                                          .map((str) =>
+                                              TextSearchItem.fromTerms(
+                                                  str, [str]))
+                                          .toList())
+                                      .search(_model
+                                          .searchSeriesTextController.text)
+                                      .map((r) => r.object)
+                                      .toList();
+                                  ;
+                                });
+                              },
+                            ),
+                            autofocus: false,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              isDense: true,
+                              labelText: 'Search',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context).lineColor,
+                              prefixIcon: Icon(
+                                Icons.search_sharp,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: _model
+                                .searchSeriesTextControllerValidator
+                                .asValidator(context),
+                          ),
+                        ),
+                        if (_model.searchSeriesTextController.text != null &&
+                            _model.searchSeriesTextController.text != '')
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 16.0, 16.0, 0.0),
+                            child: Builder(
+                              builder: (context) {
+                                final series = _model.allSeries?.toList() ?? [];
+
+                                return Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: List.generate(series.length,
+                                      (seriesIndex) {
+                                    final seriesItem = series[seriesIndex];
+                                    return Visibility(
+                                      visible: _model.simpleSearchResults
+                                          .contains(seriesItem.title),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 15.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await ActivityTable().insert({
+                                              'created_at':
+                                                  supaSerialize<DateTime>(
+                                                      getCurrentTimestamp),
+                                              'series_id': seriesItem.id,
+                                              'user_id': currentUserUid,
+                                            });
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MovieDetailViewWidget(
+                                                  seriesData: seriesItem,
+                                                ),
+                                              ),
+                                            );
+                                            logFirebaseEvent(
+                                                'Click on series ');
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 350.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  child: CachedNetworkImage(
+                                                    fadeInDuration: Duration(
+                                                        milliseconds: 500),
+                                                    fadeOutDuration: Duration(
+                                                        milliseconds: 500),
+                                                    imageUrl:
+                                                        valueOrDefault<String>(
+                                                      seriesItem.thumbnail,
+                                                      'https://picsum.photos/seed/165/600',
+                                                    ),
+                                                    width: double.infinity,
+                                                    height: 300.0,
+                                                    fit: BoxFit.fitWidth,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 15.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      seriesItem.title,
+                                                      'Title',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: Colors.white,
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w100,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                                );
+                              },
+                            ),
+                          ),
+                        if (_model.searchSeriesTextController.text == null ||
+                            _model.searchSeriesTextController.text == '')
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 16.0, 16.0, 0.0),
+                            child: Builder(
+                              builder: (context) {
+                                final series = _model.allSeries?.toList() ?? [];
+
+                                return Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: List.generate(series.length,
+                                      (seriesIndex) {
+                                    final seriesItem = series[seriesIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 15.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await ActivityTable().insert({
+                                            'created_at':
+                                                supaSerialize<DateTime>(
+                                                    getCurrentTimestamp),
+                                            'series_id': seriesItem.id,
+                                            'user_id': currentUserUid,
+                                          });
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MovieDetailViewWidget(
+                                                seriesData: seriesItem,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 250.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(18.0),
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(18.0),
+                                                child: CachedNetworkImage(
+                                                  fadeInDuration: Duration(
+                                                      milliseconds: 500),
+                                                  fadeOutDuration: Duration(
+                                                      milliseconds: 500),
+                                                  imageUrl:
+                                                      valueOrDefault<String>(
+                                                    seriesItem.thumbnail,
+                                                    'https://picsum.photos/seed/165/600',
+                                                  ),
+                                                  width: double.infinity,
+                                                  height: 200.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 15.0, 0.0, 0.0),
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    seriesItem.title,
+                                                    'Title',
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color: Colors.white,
+                                                        fontSize: 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w100,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                                );
+                              },
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+              if (_model.isLoading)
+                Expanded(
+                  child: Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Container(
+                      width: 50.0,
+                      height: 50.0,
+                      child: custom_widgets.CustomLoader(
+                        width: 50.0,
+                        height: 50.0,
+                        size: 50.0,
+                        color: FlutterFlowTheme.of(context).primary,
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

@@ -16,6 +16,9 @@ export 'movies_view_model.dart';
 class MoviesViewWidget extends StatefulWidget {
   const MoviesViewWidget({super.key});
 
+  static String routeName = 'MoviesView';
+  static String routePath = '/moviesView';
+
   @override
   State<MoviesViewWidget> createState() => _MoviesViewWidgetState();
 }

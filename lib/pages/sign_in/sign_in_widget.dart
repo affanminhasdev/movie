@@ -6,6 +6,7 @@ import '/main.dart';
 import '/pages/home/home_widget.dart';
 import '/pages/sign_up/sign_up_widget.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,9 @@ export 'sign_in_model.dart';
 
 class SignInWidget extends StatefulWidget {
   const SignInWidget({super.key});
+
+  static String routeName = 'SignIn';
+  static String routePath = '/signIn';
 
   @override
   State<SignInWidget> createState() => _SignInWidgetState();
@@ -60,6 +64,16 @@ class _SignInWidgetState extends State<SignInWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
+                Spacer(),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    'https://seriesthumbnails.b-cdn.net/Logo/Pataka%20Play%20Logo%20colored.png',
+                    width: 87.2,
+                    height: 95.91,
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 Spacer(),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
@@ -109,7 +123,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).primary,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),
@@ -186,7 +200,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context).primary,
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(8.0),

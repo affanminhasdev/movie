@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/home/home_widget.dart';
 import '/pages/sign_in/sign_in_widget.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,9 @@ export 'sign_up_model.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({super.key});
+
+  static String routeName = 'SignUp';
+  static String routePath = '/signUp';
 
   @override
   State<SignUpWidget> createState() => _SignUpWidgetState();
@@ -72,6 +76,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     height: MediaQuery.sizeOf(context).height * 0.1,
                     decoration: BoxDecoration(),
                   ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      'https://seriesthumbnails.b-cdn.net/Logo/Pataka%20Play%20Logo%20colored.png',
+                      width: 95.4,
+                      height: 102.48,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                     child: Text(
@@ -123,7 +136,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0x00000000),
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -185,7 +198,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0x00000000),
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -265,7 +278,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0x00000000),
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -359,7 +372,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0x00000000),
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),

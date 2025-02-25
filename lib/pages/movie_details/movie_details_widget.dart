@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +21,9 @@ class MovieDetailsWidget extends StatefulWidget {
   });
 
   final int? movieId;
+
+  static String routeName = 'MovieDetails';
+  static String routePath = '/movieDetails';
 
   @override
   State<MovieDetailsWidget> createState() => _MovieDetailsWidgetState();

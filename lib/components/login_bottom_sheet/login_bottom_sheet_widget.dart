@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/home/home_widget.dart';
 import '/pages/sign_in/sign_in_widget.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

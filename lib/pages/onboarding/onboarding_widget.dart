@@ -12,6 +12,9 @@ export 'onboarding_model.dart';
 class OnboardingWidget extends StatefulWidget {
   const OnboardingWidget({super.key});
 
+  static String routeName = 'Onboarding';
+  static String routePath = '/onboarding';
+
   @override
   State<OnboardingWidget> createState() => _OnboardingWidgetState();
 }
@@ -50,7 +53,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
           children: [
             Spacer(),
             Image.network(
-              'https://i.postimg.cc/GmbPxghG/Onboarding-1-4x.png',
+              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/movie-template-axp6t0/assets/pzbt3m0uf4mg/FEF_POSTER.jpg',
               width: double.infinity,
               height: MediaQuery.sizeOf(context).height * 0.65,
               fit: BoxFit.contain,
@@ -74,7 +77,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Never miss\nnew movies & series',
+                      'Watch Original Mini-Series, exclusively on Pataka Play.',
                       style: FlutterFlowTheme.of(context)
                           .headlineSmall
                           .override(
@@ -87,7 +90,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: Text(
-                        'Be the first one to watch the latest movies and series on Movia',
+                        'Premium Entertainment at your fingertips.',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Poppins',
                               letterSpacing: 0.0,

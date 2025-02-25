@@ -6,6 +6,7 @@ import '/main.dart';
 import '/pages/home/home_widget.dart';
 import '/pages/sign_up/sign_up_widget.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'sign_in_widget.dart' show SignInWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/movie_details/movie_details_widget.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +14,9 @@ export 'search_model.dart';
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({super.key});
+
+  static String routeName = 'Search';
+  static String routePath = '/search';
 
   @override
   State<SearchWidget> createState() => _SearchWidgetState();
@@ -159,7 +163,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                         child: Text(
-                          'Search in Movia',
+                          'Search',
                           style: FlutterFlowTheme.of(context)
                               .headlineMedium
                               .override(
@@ -172,7 +176,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 9.0, 0.0, 0.0),
                         child: Text(
-                          'By typing in search box, Movia search in movies, series and actors then show you the best results. ',
+                          'Search through select mini-series.',
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(

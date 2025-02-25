@@ -7,6 +7,7 @@ import '/pages/movie_details/movie_details_widget.dart';
 import '/pages/tv_shows_details/tv_shows_details_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'home_widget.dart' show HomeWidget;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;

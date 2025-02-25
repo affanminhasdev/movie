@@ -13,6 +13,9 @@ export 'history_model.dart';
 class HistoryWidget extends StatefulWidget {
   const HistoryWidget({super.key});
 
+  static String routeName = 'History';
+  static String routePath = '/history';
+
   @override
   State<HistoryWidget> createState() => _HistoryWidgetState();
 }

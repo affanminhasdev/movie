@@ -8,6 +8,7 @@ import '/pages/episodes/episodes_widget.dart';
 import '/pages/tv_shows_details/tv_shows_details_widget.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'tv_shows_details_widget.dart' show TvShowsDetailsWidget;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

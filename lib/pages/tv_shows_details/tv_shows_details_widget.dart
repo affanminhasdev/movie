@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/episodes/episodes_widget.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,9 @@ class TvShowsDetailsWidget extends StatefulWidget {
   });
 
   final int? tvId;
+
+  static String routeName = 'TvShowsDetails';
+  static String routePath = '/tvShowsDetails';
 
   @override
   State<TvShowsDetailsWidget> createState() => _TvShowsDetailsWidgetState();

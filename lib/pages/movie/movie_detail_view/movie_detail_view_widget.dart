@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +24,9 @@ class MovieDetailViewWidget extends StatefulWidget {
 
   final SeriesRow? seriesData;
   final VideoItemStruct? videoData;
+
+  static String routeName = 'MovieDetailView';
+  static String routePath = '/movieDetailView';
 
   @override
   State<MovieDetailViewWidget> createState() => _MovieDetailViewWidgetState();
