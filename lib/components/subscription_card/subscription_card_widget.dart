@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
+import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +70,7 @@ class _SubscriptionCardWidgetState extends State<SubscriptionCardWidget> {
             ),
           ),
           Text(
-            'Premium',
+            revenue_cat.offerings!.current!.monthly!.storeProduct.title,
             style: FlutterFlowTheme.of(context).titleSmall.override(
                   fontFamily: 'Poppins',
                   letterSpacing: 0.0,
@@ -102,7 +103,7 @@ class _SubscriptionCardWidgetState extends State<SubscriptionCardWidget> {
                     ),
               ),
               subtitle: Text(
-                'Watch videos in 4K quality',
+                'HD quality (1080p) streaming',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Poppins',
                       fontSize: 12.0,
@@ -121,7 +122,7 @@ class _SubscriptionCardWidgetState extends State<SubscriptionCardWidget> {
                 color: widget!.color,
               ),
               title: Text(
-                'Watch offline',
+                'Full Access',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Poppins',
                       color: FlutterFlowTheme.of(context).secondaryText,
@@ -130,7 +131,7 @@ class _SubscriptionCardWidgetState extends State<SubscriptionCardWidget> {
                     ),
               ),
               subtitle: Text(
-                'Download videos and watch later',
+                'Full access to all Pataka Play  Series',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Poppins',
                       fontSize: 12.0,
@@ -160,7 +161,7 @@ class _SubscriptionCardWidgetState extends State<SubscriptionCardWidget> {
                       ),
                 ),
                 subtitle: Text(
-                  'Enjoy watching videos without ad-free',
+                  'Enjoy Ad-free experience',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Poppins',
                         fontSize: 12.0,

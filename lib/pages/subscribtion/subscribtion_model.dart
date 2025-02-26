@@ -15,6 +15,8 @@ class SubscribtionModel extends FlutterFlowModel<SubscribtionWidget> {
 
   // Model for SubscriptionCard component.
   late SubscriptionCardModel subscriptionCardModel;
+  // Stores action output result for [RevenueCat - Purchase] action in Button widget.
+  bool? purchaseOutput;
 
   @override
   void initState(BuildContext context) {

@@ -116,12 +116,39 @@ class _SubscribtionWidgetState extends State<SubscribtionWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      final isEntitled =
-                          await revenue_cat.isEntitled('entl58b3861ea3') ??
-                              false;
-                      if (!isEntitled) {
-                        await revenue_cat.loadOfferings();
+                      _model.purchaseOutput = await revenue_cat.purchasePackage(
+                          revenue_cat.offerings!.current!.monthly!.identifier);
+                      if (_model.purchaseOutput!) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'You have successfully subscribe to the monthly plan!',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Something went wrong during purchase!',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
                       }
+
+                      safeSetState(() {});
                     },
                     text: 'Subscribe Now',
                     options: FFButtonOptions(
