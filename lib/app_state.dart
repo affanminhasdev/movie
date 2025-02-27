@@ -45,6 +45,12 @@ class FFAppState extends ChangeNotifier {
   void deleteApiKey() {
     secureStorage.delete(key: 'ff_apiKey');
   }
+
+  bool _isSubscribed = false;
+  bool get isSubscribed => _isSubscribed;
+  set isSubscribed(bool value) {
+    _isSubscribed = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

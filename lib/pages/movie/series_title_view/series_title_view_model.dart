@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/movie/movie_detail_view/movie_detail_view_widget.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
 import 'series_title_view_widget.dart' show SeriesTitleViewWidget;
@@ -24,6 +25,8 @@ class SeriesTitleViewModel extends FlutterFlowModel<SeriesTitleViewWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - checkIfUserIsSubscribed] action in SeriesTitleView widget.
+  bool? subscriptionTest;
   // Stores action output result for [Backend Call - Query Rows] action in SeriesTitleView widget.
   List<SeriesRow>? allSeries;
   // State field(s) for SearchSeries widget.

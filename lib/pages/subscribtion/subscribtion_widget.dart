@@ -105,8 +105,9 @@ class _SubscribtionWidgetState extends State<SubscribtionWidget> {
                     updateCallback: () => safeSetState(() {}),
                     child: SubscriptionCardWidget(
                       color: FlutterFlowTheme.of(context).warningOld,
-                      price: revenue_cat.offerings!.current!.monthly!
-                          .storeProduct.priceString,
+                      price: revenue_cat
+                          .offerings!.current!.monthly!.storeProduct.price
+                          .toString(),
                       isSelected: true,
                     ),
                   ),
