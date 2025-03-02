@@ -1,7 +1,5 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/home/home_widget.dart';
-import '/pages/sign_in/sign_in_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -82,12 +80,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignInWidget(),
-                  ),
-                );
+                context.pushNamed(SignInWidget.routeName);
               },
               child: Container(
                 width: double.infinity,
@@ -143,12 +136,7 @@ class _LoginBottomSheetWidgetState extends State<LoginBottomSheetWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeWidget(),
-                    ),
-                  );
+                  context.pushNamed(HomeWidget.routeName);
                 },
                 child: Container(
                   width: double.infinity,

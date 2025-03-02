@@ -360,7 +360,7 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    Navigator.pop(context);
+                                    context.pop();
                                   },
                                   child: Container(
                                     width: 40.0,
@@ -584,17 +584,17 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                MovieDetailsWidget(
-                                              movieId: getJsonField(
+                                        context.pushNamed(
+                                          MovieDetailsWidget.routeName,
+                                          queryParameters: {
+                                            'movieId': serializeParam(
+                                              getJsonField(
                                                 similarMoviesItem,
                                                 r'''$.id''',
                                               ),
+                                              ParamType.int,
                                             ),
-                                          ),
+                                          }.withoutNulls,
                                         );
                                       },
                                       child: MovieCardWidget(

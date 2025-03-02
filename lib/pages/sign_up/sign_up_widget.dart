@@ -1,10 +1,9 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/sign_in_with_google_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/home/home_widget.dart';
-import '/pages/sign_in/sign_in_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -242,6 +241,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             controller: _model.signUpPassTextController,
                             focusNode: _model.signUpPassFocusNode,
                             onFieldSubmitted: (_) async {
+                              GoRouter.of(context).prepareAuthEvent();
+
                               final user = await authManager.signInWithEmail(
                                 context,
                                 _model.signUpNameTextController.text,
@@ -251,12 +252,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 return;
                               }
 
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeWidget(),
-                                ),
-                              );
+                              context.pushNamedAuth(
+                                  HomeWidget.routeName, context.mounted);
                             },
                             autofocus: true,
                             obscureText: !_model.signUpPassVisibility,
@@ -336,6 +333,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             controller: _model.signUpConfirmPassTextController,
                             focusNode: _model.signUpConfirmPassFocusNode,
                             onFieldSubmitted: (_) async {
+                              GoRouter.of(context).prepareAuthEvent();
+
                               final user = await authManager.signInWithEmail(
                                 context,
                                 _model.signUpNameTextController.text,
@@ -345,12 +344,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 return;
                               }
 
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeWidget(),
-                                ),
-                              );
+                              context.pushNamedAuth(
+                                  HomeWidget.routeName, context.mounted);
                             },
                             autofocus: true,
                             obscureText: !_model.signUpConfirmPassVisibility,
@@ -453,6 +448,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 !_model.formKey.currentState!.validate()) {
                               return;
                             }
+                            GoRouter.of(context).prepareAuthEvent();
                             if (_model.signUpPassTextController.text !=
                                 _model.signUpConfirmPassTextController.text) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -482,7 +478,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               'email': _model.signUpEmailTextController.text,
                               'id': currentUserUid,
                             });
-                            Navigator.pop(context);
+                            context.safePop();
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -523,6 +519,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 0.0),
+                          child: wrapWithModel(
+                            model: _model.signInWithGoogleModel,
+                            updateCallback: () => safeSetState(() {}),
+                            child: SignInWithGoogleWidget(),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -550,12 +555,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInWidget(),
-                                ),
-                              );
+                              context.pushNamed(SignInWidget.routeName);
                             },
                             child: Text(
                               'Sign in',

@@ -108,9 +108,75 @@ class VideoItemStruct extends FFFirebaseStruct {
       }.withoutNulls;
 
   @override
-  Map<String, dynamic> toSerializableMap() => toMap();
+  Map<String, dynamic> toSerializableMap() => {
+        'videoLibraryId': serializeParam(
+          _videoLibraryId,
+          ParamType.int,
+        ),
+        'guid': serializeParam(
+          _guid,
+          ParamType.String,
+        ),
+        'title': serializeParam(
+          _title,
+          ParamType.String,
+        ),
+        'views': serializeParam(
+          _views,
+          ParamType.int,
+        ),
+        'dateUploaded': serializeParam(
+          _dateUploaded,
+          ParamType.String,
+        ),
+        'thumbnailFileName': serializeParam(
+          _thumbnailFileName,
+          ParamType.String,
+        ),
+        'length': serializeParam(
+          _length,
+          ParamType.int,
+        ),
+      }.withoutNulls;
+
   static VideoItemStruct fromSerializableMap(Map<String, dynamic> data) =>
-      fromMap(data);
+      VideoItemStruct(
+        videoLibraryId: deserializeParam(
+          data['videoLibraryId'],
+          ParamType.int,
+          false,
+        ),
+        guid: deserializeParam(
+          data['guid'],
+          ParamType.String,
+          false,
+        ),
+        title: deserializeParam(
+          data['title'],
+          ParamType.String,
+          false,
+        ),
+        views: deserializeParam(
+          data['views'],
+          ParamType.int,
+          false,
+        ),
+        dateUploaded: deserializeParam(
+          data['dateUploaded'],
+          ParamType.String,
+          false,
+        ),
+        thumbnailFileName: deserializeParam(
+          data['thumbnailFileName'],
+          ParamType.String,
+          false,
+        ),
+        length: deserializeParam(
+          data['length'],
+          ParamType.int,
+          false,
+        ),
+      );
 
   @override
   String toString() => 'VideoItemStruct(${toMap()})';

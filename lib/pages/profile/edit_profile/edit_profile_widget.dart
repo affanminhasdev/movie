@@ -374,7 +374,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           );
                           safeSetState(() => _model.requestCompleter = null);
                           await _model.waitForRequestCompleted();
-                          Navigator.pop(context);
+                          context.safePop();
                         },
                         text: 'Update Profile',
                         options: FFButtonOptions(

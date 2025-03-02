@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/profile/about/about_widget.dart';
-import '/pages/profile/help/help_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +63,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           title: Text(
@@ -123,12 +121,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HelpWidget(),
-                          ),
-                        );
+                        context.pushNamed(HelpWidget.routeName);
                       },
                       child: wrapWithModel(
                         model: _model.profileOptionCardWithArrowModel2,
@@ -152,12 +145,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AboutWidget(),
-                          ),
-                        );
+                        context.pushNamed(AboutWidget.routeName);
                       },
                       child: wrapWithModel(
                         model: _model.profileOptionCardWithArrowModel3,

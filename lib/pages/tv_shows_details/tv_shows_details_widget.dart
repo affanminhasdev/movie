@@ -4,7 +4,6 @@ import '/components/season_card/season_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/episodes/episodes_widget.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
@@ -337,7 +336,7 @@ class _TvShowsDetailsWidgetState extends State<TvShowsDetailsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    Navigator.pop(context);
+                                    context.pop();
                                   },
                                   child: Container(
                                     width: 40.0,
@@ -448,11 +447,11 @@ class _TvShowsDetailsWidgetState extends State<TvShowsDetailsWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EpisodesWidget(
-                                          tvId: valueOrDefault<int>(
+                                    context.pushNamed(
+                                      EpisodesWidget.routeName,
+                                      queryParameters: {
+                                        'tvId': serializeParam(
+                                          valueOrDefault<int>(
                                             getJsonField(
                                               columnTvShowsInfoResponse
                                                   .jsonBody,
@@ -460,22 +459,29 @@ class _TvShowsDetailsWidgetState extends State<TvShowsDetailsWidget> {
                                             ),
                                             66732,
                                           ),
-                                          seasonNum: valueOrDefault<int>(
+                                          ParamType.int,
+                                        ),
+                                        'seasonNum': serializeParam(
+                                          valueOrDefault<int>(
                                             getJsonField(
                                               seasonItem,
                                               r'''$.season_number''',
                                             ),
                                             1,
                                           ),
-                                          seasonName: valueOrDefault<String>(
+                                          ParamType.int,
+                                        ),
+                                        'seasonName': serializeParam(
+                                          valueOrDefault<String>(
                                             getJsonField(
                                               seasonItem,
                                               r'''$.name''',
                                             )?.toString(),
                                             'Season',
                                           ),
+                                          ParamType.String,
                                         ),
-                                      ),
+                                      }.withoutNulls,
                                     );
                                   },
                                   child: SeasonCardWidget(
@@ -574,17 +580,17 @@ class _TvShowsDetailsWidgetState extends State<TvShowsDetailsWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                TvShowsDetailsWidget(
-                                              tvId: getJsonField(
+                                        context.pushNamed(
+                                          TvShowsDetailsWidget.routeName,
+                                          queryParameters: {
+                                            'tvId': serializeParam(
+                                              getJsonField(
                                                 similarTvShowsItem,
                                                 r'''$.id''',
                                               ),
+                                              ParamType.int,
                                             ),
-                                          ),
+                                          }.withoutNulls,
                                         );
                                       },
                                       child: MovieCardWidget(

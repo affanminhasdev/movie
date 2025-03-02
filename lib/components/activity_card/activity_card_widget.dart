@@ -1,7 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/movie/movie_detail_view/movie_detail_view_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -53,13 +52,14 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onTap: () async {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MovieDetailViewWidget(
-              seriesData: widget!.series,
+        context.pushNamed(
+          MovieDetailViewWidget.routeName,
+          queryParameters: {
+            'seriesData': serializeParam(
+              widget!.series,
+              ParamType.SupabaseRow,
             ),
-          ),
+          }.withoutNulls,
         );
       },
       child: Container(

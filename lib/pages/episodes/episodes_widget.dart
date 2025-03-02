@@ -73,7 +73,7 @@ class _EpisodesWidgetState extends State<EpisodesWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           title: Text(

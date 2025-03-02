@@ -4,7 +4,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/movie/movie_detail_view/movie_detail_view_widget.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -228,15 +227,17 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                               'series_id': seriesItem.id,
                                               'user_id': currentUserUid,
                                             });
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    MovieDetailViewWidget(
-                                                  seriesData: seriesItem,
+
+                                            context.pushNamed(
+                                              MovieDetailViewWidget.routeName,
+                                              queryParameters: {
+                                                'seriesData': serializeParam(
+                                                  seriesItem,
+                                                  ParamType.SupabaseRow,
                                                 ),
-                                              ),
+                                              }.withoutNulls,
                                             );
+
                                             logFirebaseEvent(
                                                 'Click on series ');
                                           },
@@ -252,6 +253,8 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                             ),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 ClipRRect(
                                                   borderRadius:
@@ -335,14 +338,15 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                             'series_id': seriesItem.id,
                                             'user_id': currentUserUid,
                                           });
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MovieDetailViewWidget(
-                                                seriesData: seriesItem,
+
+                                          context.pushNamed(
+                                            MovieDetailViewWidget.routeName,
+                                            queryParameters: {
+                                              'seriesData': serializeParam(
+                                                seriesItem,
+                                                ParamType.SupabaseRow,
                                               ),
-                                            ),
+                                            }.withoutNulls,
                                           );
                                         },
                                         child: Container(

@@ -110,7 +110,7 @@ class _MovieDetailViewWidgetState extends State<MovieDetailViewWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              Navigator.pop(context);
+                              context.safePop();
                             },
                             child: Icon(
                               Icons.arrow_back,
@@ -189,15 +189,21 @@ class _MovieDetailViewWidgetState extends State<MovieDetailViewWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              MovieDetailViewWidget(
-                                            seriesData: widget!.seriesData,
-                                            videoData: seriesVideoItem,
+                                      if (Navigator.of(context).canPop()) {
+                                        context.pop();
+                                      }
+                                      context.pushNamed(
+                                        MovieDetailViewWidget.routeName,
+                                        queryParameters: {
+                                          'seriesData': serializeParam(
+                                            widget!.seriesData,
+                                            ParamType.SupabaseRow,
                                           ),
-                                        ),
+                                          'videoData': serializeParam(
+                                            seriesVideoItem,
+                                            ParamType.DataStruct,
+                                          ),
+                                        }.withoutNulls,
                                       );
                                     },
                                     child: Column(

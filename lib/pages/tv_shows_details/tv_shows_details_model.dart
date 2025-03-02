@@ -4,8 +4,6 @@ import '/components/season_card/season_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/episodes/episodes_widget.dart';
-import '/pages/tv_shows_details/tv_shows_details_widget.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';

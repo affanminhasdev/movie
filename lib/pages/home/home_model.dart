@@ -3,8 +3,6 @@ import '/components/movie_card/movie_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/movie_details/movie_details_widget.dart';
-import '/pages/tv_shows_details/tv_shows_details_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';

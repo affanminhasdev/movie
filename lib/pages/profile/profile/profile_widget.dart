@@ -4,11 +4,6 @@ import '/components/profile_option_card_with_arrow/profile_option_card_with_arro
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/onboarding/onboarding_widget.dart';
-import '/pages/profile/change_password/change_password_widget.dart';
-import '/pages/profile/edit_profile/edit_profile_widget.dart';
-import '/pages/profile/settings/settings_widget.dart';
-import '/pages/subscribtion/subscribtion_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -235,12 +230,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => EditProfileWidget(),
-                                    ),
-                                  );
+                                  context
+                                      .pushNamed(EditProfileWidget.routeName);
                                 },
                                 child: Icon(
                                   FFIcons.knameEdit,
@@ -275,12 +266,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SettingsWidget(),
-                              ),
-                            );
+                            context.pushNamed(SettingsWidget.routeName);
                           },
                           child: wrapWithModel(
                             model: _model.profileOptionCardWithArrowModel1,
@@ -304,12 +290,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SubscribtionWidget(),
-                              ),
-                            );
+                            context.pushNamed(SubscribtionWidget.routeName);
                           },
                           child: wrapWithModel(
                             model: _model.profileOptionCardWithArrowModel2,
@@ -333,12 +314,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ChangePasswordWidget(),
-                              ),
-                            );
+                            context.pushNamed(ChangePasswordWidget.routeName);
                           },
                           child: wrapWithModel(
                             model: _model.profileOptionCardWithArrowModel3,
@@ -369,14 +345,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              GoRouter.of(context).prepareAuthEvent();
                               await authManager.signOut();
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => OnboardingWidget(),
-                                ),
-                                (r) => false,
-                              );
+                              GoRouter.of(context).clearRedirectLocation();
+
+                              context.goNamedAuth(
+                                  OnboardingWidget.routeName, context.mounted);
                             },
                             child: Row(
                               mainAxisSize: MainAxisSize.max,

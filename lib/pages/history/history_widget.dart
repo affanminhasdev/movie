@@ -62,7 +62,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           title: Text(

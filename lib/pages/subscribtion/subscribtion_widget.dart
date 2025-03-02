@@ -63,7 +63,7 @@ class _SubscribtionWidgetState extends State<SubscribtionWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           actions: [],

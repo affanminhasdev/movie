@@ -3,8 +3,6 @@ import '/components/movie_card/movie_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/movie_details/movie_details_widget.dart';
-import '/pages/tv_shows_details/tv_shows_details_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
@@ -109,17 +107,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            MovieDetailsWidget(
-                                          movieId: getJsonField(
+                                    context.pushNamed(
+                                      MovieDetailsWidget.routeName,
+                                      queryParameters: {
+                                        'movieId': serializeParam(
+                                          getJsonField(
                                             resultsItem,
                                             r'''$.id''',
                                           ),
+                                          ParamType.int,
                                         ),
-                                      ),
+                                      }.withoutNulls,
                                     );
                                   },
                                   child: Stack(
@@ -130,17 +128,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MovieDetailsWidget(
-                                                movieId: getJsonField(
+                                          context.pushNamed(
+                                            MovieDetailsWidget.routeName,
+                                            queryParameters: {
+                                              'movieId': serializeParam(
+                                                getJsonField(
                                                   resultsItem,
                                                   r'''$.id''',
                                                 ),
+                                                ParamType.int,
                                               ),
-                                            ),
+                                            }.withoutNulls,
                                           );
                                         },
                                         child: Container(
@@ -413,16 +411,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MovieDetailsWidget(
-                                        movieId: getJsonField(
+                                  context.pushNamed(
+                                    MovieDetailsWidget.routeName,
+                                    queryParameters: {
+                                      'movieId': serializeParam(
+                                        getJsonField(
                                           moviesItem,
                                           r'''$.id''',
                                         ),
+                                        ParamType.int,
                                       ),
-                                    ),
+                                    }.withoutNulls,
                                   );
                                 },
                                 child: MovieCardWidget(
@@ -552,17 +551,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              TvShowsDetailsWidget(
-                                            tvId: getJsonField(
+                                      context.pushNamed(
+                                        TvShowsDetailsWidget.routeName,
+                                        queryParameters: {
+                                          'tvId': serializeParam(
+                                            getJsonField(
                                               tvshowsItem,
                                               r'''$.id''',
                                             ),
+                                            ParamType.int,
                                           ),
-                                        ),
+                                        }.withoutNulls,
                                       );
                                     },
                                     child: MovieCardWidget(
@@ -674,19 +673,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MovieDetailsWidget(
-                                        movieId: valueOrDefault<int>(
+                                  context.pushNamed(
+                                    MovieDetailsWidget.routeName,
+                                    queryParameters: {
+                                      'movieId': serializeParam(
+                                        valueOrDefault<int>(
                                           getJsonField(
                                             popularMoviesItem,
                                             r'''$.id''',
                                           ),
                                           278,
                                         ),
+                                        ParamType.int,
                                       ),
-                                    ),
+                                    }.withoutNulls,
                                   );
                                 },
                                 child: MovieCardWidget(

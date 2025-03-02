@@ -33,7 +33,29 @@
             </array>
         </dict>
 
+
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.374295366836-rjf3a8lggp84buvn33pm04j9m1b5j6ee</string>
+            </array>
+        </dict>
+
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>patakaplay.com</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>patakaplay</string>
+        </array>
+        </dict>
     </array>
+    <key>FlutterDeepLinkingEnabled</key>
+    <true/>
 
 
 	<key>CFBundleVersion</key>

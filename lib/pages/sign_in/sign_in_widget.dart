@@ -1,10 +1,8 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/components/sign_in_with_google_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/main.dart';
-import '/pages/home/home_widget.dart';
-import '/pages/sign_up/sign_up_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -165,23 +163,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         child: TextFormField(
                           controller: _model.signInPassTextController,
                           focusNode: _model.signInPassFocusNode,
-                          onFieldSubmitted: (_) async {
-                            final user = await authManager.signInWithEmail(
-                              context,
-                              _model.signInEmailTextController.text,
-                              _model.signInPassTextController.text,
-                            );
-                            if (user == null) {
-                              return;
-                            }
-
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeWidget(),
-                              ),
-                            );
-                          },
+                          onFieldSubmitted: (_) async {},
                           autofocus: true,
                           obscureText: !_model.signInPassVisibility,
                           decoration: InputDecoration(
@@ -274,6 +256,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                               !_model.formKey.currentState!.validate()) {
                             return;
                           }
+                          GoRouter.of(context).prepareAuthEvent();
 
                           final user = await authManager.signInWithEmail(
                             context,
@@ -284,14 +267,8 @@ class _SignInWidgetState extends State<SignInWidget> {
                             return;
                           }
 
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  NavBarPage(initialPage: 'SeriesTitleView'),
-                            ),
-                            (r) => false,
-                          );
+                          context.goNamedAuth(
+                              SeriesTitleViewWidget.routeName, context.mounted);
                         },
                         text: 'Sign in',
                         options: FFButtonOptions(
@@ -316,6 +293,29 @@ class _SignInWidgetState extends State<SignInWidget> {
                             width: 1.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            GoRouter.of(context).prepareAuthEvent();
+                            final user =
+                                await authManager.signInWithGoogle(context);
+                            if (user == null) {
+                              return;
+                            }
+                          },
+                          child: wrapWithModel(
+                            model: _model.signInWithGoogleModel,
+                            updateCallback: () => safeSetState(() {}),
+                            child: SignInWithGoogleWidget(),
+                          ),
                         ),
                       ),
                     ],
@@ -343,12 +343,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUpWidget(),
-                              ),
-                            );
+                            context.pushNamed(SignUpWidget.routeName);
                           },
                           child: Text(
                             'Sign up',

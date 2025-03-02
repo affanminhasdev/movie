@@ -4,11 +4,6 @@ import '/components/profile_option_card_with_arrow/profile_option_card_with_arro
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/onboarding/onboarding_widget.dart';
-import '/pages/profile/change_password/change_password_widget.dart';
-import '/pages/profile/edit_profile/edit_profile_widget.dart';
-import '/pages/profile/settings/settings_widget.dart';
-import '/pages/subscribtion/subscribtion_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'profile_widget.dart' show ProfileWidget;

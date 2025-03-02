@@ -1,10 +1,9 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/sign_in_with_google_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/home/home_widget.dart';
-import '/pages/sign_in/sign_in_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'sign_up_widget.dart' show SignUpWidget;
@@ -35,11 +34,14 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   late bool signUpConfirmPassVisibility;
   String? Function(BuildContext, String?)?
       signUpConfirmPassTextControllerValidator;
+  // Model for SignInWithGoogle component.
+  late SignInWithGoogleModel signInWithGoogleModel;
 
   @override
   void initState(BuildContext context) {
     signUpPassVisibility = false;
     signUpConfirmPassVisibility = false;
+    signInWithGoogleModel = createModel(context, () => SignInWithGoogleModel());
   }
 
   @override
@@ -55,5 +57,7 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
     signUpConfirmPassFocusNode?.dispose();
     signUpConfirmPassTextController?.dispose();
+
+    signInWithGoogleModel.dispose();
   }
 }

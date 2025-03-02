@@ -61,7 +61,7 @@ class _BookarkWidgetState extends State<BookarkWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           title: Text(

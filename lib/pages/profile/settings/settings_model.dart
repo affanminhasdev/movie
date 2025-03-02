@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/profile/about/about_widget.dart';
-import '/pages/profile/help/help_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'settings_widget.dart' show SettingsWidget;

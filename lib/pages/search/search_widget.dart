@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/movie_details/movie_details_widget.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -220,16 +219,17 @@ class _SearchWidgetState extends State<SearchWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MovieDetailsWidget(
-                                      movieId: getJsonField(
+                                context.pushNamed(
+                                  MovieDetailsWidget.routeName,
+                                  queryParameters: {
+                                    'movieId': serializeParam(
+                                      getJsonField(
                                         searMoviesItem,
                                         r'''$.id''',
                                       ),
+                                      ParamType.int,
                                     ),
-                                  ),
+                                  }.withoutNulls,
                                 );
                               },
                               child: Column(

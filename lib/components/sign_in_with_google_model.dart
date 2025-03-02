@@ -1,15 +1,12 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/index.dart';
-import 'onboarding_widget.dart' show OnboardingWidget;
+import 'sign_in_with_google_widget.dart' show SignInWithGoogleWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class OnboardingModel extends FlutterFlowModel<OnboardingWidget> {
+class SignInWithGoogleModel extends FlutterFlowModel<SignInWithGoogleWidget> {
   @override
   void initState(BuildContext context) {}
 
