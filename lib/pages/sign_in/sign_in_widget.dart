@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/components/sign_in_with_google_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -310,6 +311,16 @@ class _SignInWidgetState extends State<SignInWidget> {
                             if (user == null) {
                               return;
                             }
+                            await ProfileTable().insert({
+                              'created_at':
+                                  supaSerialize<DateTime>(getCurrentTimestamp),
+                              'email': currentUserEmail,
+                              'id': currentUserUid,
+                            });
+
+                            context.pushNamedAuth(
+                                SeriesTitleViewWidget.routeName,
+                                context.mounted);
                           },
                           child: wrapWithModel(
                             model: _model.signInWithGoogleModel,
