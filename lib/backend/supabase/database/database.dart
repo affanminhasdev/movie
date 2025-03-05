@@ -8,3 +8,4 @@ export 'table.dart';
 export 'tables/activity.dart';
 export 'tables/profile.dart';
 export 'tables/series.dart';
+export 'tables/episodes.dart';

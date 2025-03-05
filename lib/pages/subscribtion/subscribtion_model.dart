@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
+import '/index.dart';
 import 'subscribtion_widget.dart' show SubscribtionWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

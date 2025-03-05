@@ -97,7 +97,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        await launchURL('');
+                        context.pushNamed(PrivacyPolicyWidget.routeName);
                       },
                       child: wrapWithModel(
                         model: _model.profileOptionCardWithArrowModel1,

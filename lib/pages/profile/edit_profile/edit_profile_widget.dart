@@ -3,7 +3,6 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -117,94 +116,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
-                          _model.uploadedFileUrl != null &&
-                                  _model.uploadedFileUrl != ''
-                              ? _model.uploadedFileUrl
-                              : valueOrDefault<String>(
-                                  columnProfileRow?.profileImage,
-                                  'https://firebasestorage.googleapis.com/v0/b/ihdz-fbnv6x.appspot.com/o/user.png?alt=media&token=53d5edb0-0cb0-4514-a436-6bec266e52d0',
-                                ),
+                          'https://seriesthumbnails.b-cdn.net/Logo/smile2.png',
                           fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          final selectedMedia =
-                              await selectMediaWithSourceBottomSheet(
-                            context: context,
-                            storageFolderPath: 'profile_images',
-                            allowPhoto: true,
-                          );
-                          if (selectedMedia != null &&
-                              selectedMedia.every((m) =>
-                                  validateFileFormat(m.storagePath, context))) {
-                            safeSetState(() => _model.isDataUploading = true);
-                            var selectedUploadedFiles = <FFUploadedFile>[];
-
-                            var downloadUrls = <String>[];
-                            try {
-                              selectedUploadedFiles = selectedMedia
-                                  .map((m) => FFUploadedFile(
-                                        name: m.storagePath.split('/').last,
-                                        bytes: m.bytes,
-                                        height: m.dimensions?.height,
-                                        width: m.dimensions?.width,
-                                        blurHash: m.blurHash,
-                                      ))
-                                  .toList();
-
-                              downloadUrls = await uploadSupabaseStorageFiles(
-                                bucketName: 'users',
-                                selectedFiles: selectedMedia,
-                              );
-                            } finally {
-                              _model.isDataUploading = false;
-                            }
-                            if (selectedUploadedFiles.length ==
-                                    selectedMedia.length &&
-                                downloadUrls.length == selectedMedia.length) {
-                              safeSetState(() {
-                                _model.uploadedLocalFile =
-                                    selectedUploadedFiles.first;
-                                _model.uploadedFileUrl = downloadUrls.first;
-                              });
-                            } else {
-                              safeSetState(() {});
-                              return;
-                            }
-                          }
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 5.0, 0.0),
-                              child: Icon(
-                                Icons.mode_edit_outlined,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 18.0,
-                              ),
-                            ),
-                            Text(
-                              'Edit Image',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ],
                         ),
                       ),
                     ),
@@ -360,10 +273,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               'name': _model.fullNameFieldTextController1.text,
                               'username':
                                   _model.fullNameFieldTextController2.text,
-                              'profile_image': _model.uploadedFileUrl != null &&
-                                      _model.uploadedFileUrl != ''
-                                  ? _model.uploadedFileUrl
-                                  : columnProfileRow?.profileImage,
                               'updated_at':
                                   supaSerialize<DateTime>(getCurrentTimestamp),
                             },

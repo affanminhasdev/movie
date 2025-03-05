@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -87,38 +86,6 @@ class _VideoComponentWidgetState extends State<VideoComponentWidget> {
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                           ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                    child: RichText(
-                      textScaler: MediaQuery.of(context).textScaler,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: valueOrDefault<String>(
-                              widget!.videoItem?.views?.toString(),
-                              '0',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          TextSpan(
-                            text: ' views',
-                            style: TextStyle(),
-                          )
-                        ],
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 13.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
                     ),
                   ),
                 ],

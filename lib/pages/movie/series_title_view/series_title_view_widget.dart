@@ -1,3 +1,4 @@
+import '';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/supabase/supabase.dart';
@@ -41,18 +42,8 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.subscriptionTest = await actions.checkIfUserIsSubscribed();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            _model.subscriptionTest!.toString(),
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).primaryText,
-            ),
-          ),
-          duration: Duration(milliseconds: 4000),
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
-        ),
-      );
+      FFAppState().isSubscribed = _model.subscriptionTest!;
+      FFAppState().update(() {});
       _model.isLoading = true;
       safeSetState(() {});
       _model.allSeries = await SeriesTable().queryRows(
@@ -75,6 +66,8 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -138,7 +131,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              labelText: 'Search',
+                              hintText: 'Search series',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .bodySmall
                                   .override(
@@ -284,6 +277,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                                       seriesItem.title,
                                                       'Title',
                                                     ),
+                                                    textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -293,7 +287,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FontWeight.w100,
+                                                              FontWeight.w600,
                                                         ),
                                                   ),
                                                 ),

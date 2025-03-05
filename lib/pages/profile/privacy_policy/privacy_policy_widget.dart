@@ -75,7 +75,7 @@ class _PrivacyPolicyWidgetState extends State<PrivacyPolicyWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Pataka Play Privacy Policy',
+                      'https://patakaplay.com/privacy-policy/',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Poppins',
                             letterSpacing: 0.0,

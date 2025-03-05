@@ -93,23 +93,12 @@ class _ActivityCardWidgetState extends State<ActivityCardWidget> {
                           widget!.series?.title,
                           'Title',
                         ),
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily: 'Poppins',
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                        child: Text(
-                          'released on ${dateTimeFormat("yMMMd", widget!.series?.createdAt)}',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Poppins',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
+                        style:
+                            FlutterFlowTheme.of(context).headlineLarge.override(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                ),
                       ),
                     ],
                   ),

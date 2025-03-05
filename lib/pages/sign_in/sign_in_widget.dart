@@ -67,7 +67,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
-                    'https://seriesthumbnails.b-cdn.net/Logo/Pataka%20Play%20Logo%20colored.png',
+                    'https://seriesthumbnails.b-cdn.net/Logo/2.png',
                     width: 87.2,
                     height: 95.91,
                     fit: BoxFit.cover,

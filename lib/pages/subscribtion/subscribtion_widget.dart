@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -133,6 +134,10 @@ class _SubscribtionWidgetState extends State<SubscribtionWidget> {
                                 FlutterFlowTheme.of(context).secondary,
                           ),
                         );
+                        FFAppState().isSubscribed = true;
+                        safeSetState(() {});
+
+                        context.pushNamed(SeriesTitleViewWidget.routeName);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

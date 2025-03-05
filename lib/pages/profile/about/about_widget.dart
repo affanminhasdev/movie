@@ -76,7 +76,7 @@ class _AboutWidgetState extends State<AboutWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'About Pataka Play ',
+                      'Love. Drama. Entertainment!\nWatch Original Mini-Series on Pataka Play. \nStart Streaming Now! 🚀',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Poppins',
                             letterSpacing: 0.0,

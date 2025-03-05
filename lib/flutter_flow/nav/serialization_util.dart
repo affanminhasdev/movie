@@ -261,6 +261,8 @@ dynamic deserializeParam<T>(
             return ProfileRow(data);
           case SeriesRow:
             return SeriesRow(data);
+          case EpisodesRow:
+            return EpisodesRow(data);
           default:
             return null;
         }

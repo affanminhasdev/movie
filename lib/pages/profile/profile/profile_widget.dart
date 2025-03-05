@@ -116,10 +116,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(100.0),
                               child: Image.network(
-                                valueOrDefault<String>(
-                                  columnProfileRow?.profileImage,
-                                  'https://firebasestorage.googleapis.com/v0/b/ihdz-fbnv6x.appspot.com/o/user.png?alt=media&token=53d5edb0-0cb0-4514-a436-6bec266e52d0',
-                                ),
+                                'https://seriesthumbnails.b-cdn.net/Logo/smile2.png',
                                 width: 76.0,
                                 height: 76.0,
                                 fit: BoxFit.cover,

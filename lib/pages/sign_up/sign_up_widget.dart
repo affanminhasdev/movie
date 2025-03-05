@@ -78,7 +78,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      'https://seriesthumbnails.b-cdn.net/Logo/Pataka%20Play%20Logo%20colored.png',
+                      'https://seriesthumbnails.b-cdn.net/Logo/2.png',
                       width: 95.4,
                       height: 102.48,
                       fit: BoxFit.cover,
