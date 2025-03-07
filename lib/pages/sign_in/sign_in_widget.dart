@@ -84,14 +84,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                         ),
                   ),
                 ),
-                Text(
-                  'Enter your user information below or continue with one of your social accounts',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Poppins',
-                        letterSpacing: 0.0,
-                      ),
-                ),
                 Form(
                   key: _model.formKey,
                   autovalidateMode: AutovalidateMode.disabled,
@@ -245,11 +237,57 @@ class _SignInWidgetState extends State<SignInWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Poppins',
+                                    color: Color(0xFF7426EF),
                                     letterSpacing: 0.0,
                                   ),
                             ),
                           ],
                         ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(1.0, 0.0),
+                            child: Text(
+                              'By signing in, you agree to our ',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await launchURL(
+                                    'https://patakaplay.com/policies');
+                              },
+                              child: Text(
+                                ' Terms of Service & Privacy Policy.',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF7426EF),
+                                      fontSize: 10.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       FFButtonWidget(
                         onPressed: () async {
@@ -295,6 +333,21 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
+                      ),
+                      Container(
+                        width: 100.0,
+                        height: 15.89,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                      ),
+                      Text(
+                        'OR',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Poppins',
+                              letterSpacing: 0.0,
+                            ),
                       ),
                       Padding(
                         padding:

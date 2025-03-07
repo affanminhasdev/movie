@@ -72,7 +72,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 children: [
                   Container(
                     width: double.infinity,
-                    height: MediaQuery.sizeOf(context).height * 0.1,
+                    height: MediaQuery.sizeOf(context).height * 0.034,
                     decoration: BoxDecoration(),
                   ),
                   ClipRRect(
@@ -94,14 +94,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 letterSpacing: 0.0,
                               ),
                     ),
-                  ),
-                  Text(
-                    'Enter your user information below or continue with one of your social accounts',
-                    textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Poppins',
-                          letterSpacing: 0.0,
-                        ),
                   ),
                   Form(
                     key: _model.formKey,
@@ -419,28 +411,45 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 24.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'By sing up, you accept Privacy Policy & Terms of Service',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 12.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 8.0),
+                              child: Text(
+                                'By signing up, you agree to our ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 10.0,
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
-                            ],
-                          ),
+                            ),
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await launchURL(
+                                    'https://patakaplay.com/policies/');
+                              },
+                              child: Text(
+                                'Terms of Service & Privacy Policy.',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF7426EF),
+                                      fontSize: 10.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
                         FFButtonWidget(
                           onPressed: () async {
@@ -518,6 +527,22 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
+                        ),
+                        Container(
+                          width: 100.0,
+                          height: 24.69,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                        ),
+                        Text(
+                          'Or',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Poppins',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
