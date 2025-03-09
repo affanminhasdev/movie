@@ -192,22 +192,24 @@ class _MovieDetailViewWidgetState extends State<MovieDetailViewWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (Navigator.of(context).canPop()) {
-                                        context.pop();
+                                      if (FFAppState().isSubscribed) {
+                                        if (Navigator.of(context).canPop()) {
+                                          context.pop();
+                                        }
+                                        context.pushNamed(
+                                          MovieDetailViewWidget.routeName,
+                                          queryParameters: {
+                                            'seriesData': serializeParam(
+                                              widget!.seriesData,
+                                              ParamType.SupabaseRow,
+                                            ),
+                                            'videoData': serializeParam(
+                                              seriesVideoItem,
+                                              ParamType.DataStruct,
+                                            ),
+                                          }.withoutNulls,
+                                        );
                                       }
-                                      context.pushNamed(
-                                        MovieDetailViewWidget.routeName,
-                                        queryParameters: {
-                                          'seriesData': serializeParam(
-                                            widget!.seriesData,
-                                            ParamType.SupabaseRow,
-                                          ),
-                                          'videoData': serializeParam(
-                                            seriesVideoItem,
-                                            ParamType.DataStruct,
-                                          ),
-                                        }.withoutNulls,
-                                      );
                                     },
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
