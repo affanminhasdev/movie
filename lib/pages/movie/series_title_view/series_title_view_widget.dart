@@ -191,20 +191,18 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 35.0, 0.0, 35.0),
-                            child: Text(
-                              'HOT RELEASE',
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 0.0),
+                          child: Text(
+                            'HOT RELEASE',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                         if (_model.searchSeriesTextController.text != null &&

@@ -41,3 +41,7 @@ String getBunnyVideoURL(VideoItemStruct videoItem) {
 
   return '$url/${videoItem.videoLibraryId}/${videoItem.guid}';
 }
+
+DateTime getDateTime(String datetime) {
+  return DateTime.parse(datetime);
+}

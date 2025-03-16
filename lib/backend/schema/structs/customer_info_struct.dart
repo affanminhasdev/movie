@@ -13,11 +13,11 @@ class CustomerInfoStruct extends FFFirebaseStruct {
   CustomerInfoStruct({
     bool? isActive,
     bool? willRenew,
-    DateTime? latestPurchaseDate,
-    DateTime? originalPurchaseDate,
+    String? latestPurchaseDate,
+    String? originalPurchaseDate,
     String? productIdentifier,
     String? store,
-    DateTime? expirationDate,
+    String? expirationDate,
     String? productPlanIdentifier,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _isActive = isActive,
@@ -45,16 +45,16 @@ class CustomerInfoStruct extends FFFirebaseStruct {
   bool hasWillRenew() => _willRenew != null;
 
   // "latestPurchaseDate" field.
-  DateTime? _latestPurchaseDate;
-  DateTime? get latestPurchaseDate => _latestPurchaseDate;
-  set latestPurchaseDate(DateTime? val) => _latestPurchaseDate = val;
+  String? _latestPurchaseDate;
+  String get latestPurchaseDate => _latestPurchaseDate ?? '';
+  set latestPurchaseDate(String? val) => _latestPurchaseDate = val;
 
   bool hasLatestPurchaseDate() => _latestPurchaseDate != null;
 
   // "originalPurchaseDate" field.
-  DateTime? _originalPurchaseDate;
-  DateTime? get originalPurchaseDate => _originalPurchaseDate;
-  set originalPurchaseDate(DateTime? val) => _originalPurchaseDate = val;
+  String? _originalPurchaseDate;
+  String get originalPurchaseDate => _originalPurchaseDate ?? '';
+  set originalPurchaseDate(String? val) => _originalPurchaseDate = val;
 
   bool hasOriginalPurchaseDate() => _originalPurchaseDate != null;
 
@@ -73,9 +73,9 @@ class CustomerInfoStruct extends FFFirebaseStruct {
   bool hasStore() => _store != null;
 
   // "expirationDate" field.
-  DateTime? _expirationDate;
-  DateTime? get expirationDate => _expirationDate;
-  set expirationDate(DateTime? val) => _expirationDate = val;
+  String? _expirationDate;
+  String get expirationDate => _expirationDate ?? '';
+  set expirationDate(String? val) => _expirationDate = val;
 
   bool hasExpirationDate() => _expirationDate != null;
 
@@ -90,11 +90,11 @@ class CustomerInfoStruct extends FFFirebaseStruct {
       CustomerInfoStruct(
         isActive: data['isActive'] as bool?,
         willRenew: data['willRenew'] as bool?,
-        latestPurchaseDate: data['latestPurchaseDate'] as DateTime?,
-        originalPurchaseDate: data['originalPurchaseDate'] as DateTime?,
+        latestPurchaseDate: data['latestPurchaseDate'] as String?,
+        originalPurchaseDate: data['originalPurchaseDate'] as String?,
         productIdentifier: data['productIdentifier'] as String?,
         store: data['store'] as String?,
-        expirationDate: data['expirationDate'] as DateTime?,
+        expirationDate: data['expirationDate'] as String?,
         productPlanIdentifier: data['productPlanIdentifier'] as String?,
       );
 
@@ -125,11 +125,11 @@ class CustomerInfoStruct extends FFFirebaseStruct {
         ),
         'latestPurchaseDate': serializeParam(
           _latestPurchaseDate,
-          ParamType.DateTime,
+          ParamType.String,
         ),
         'originalPurchaseDate': serializeParam(
           _originalPurchaseDate,
-          ParamType.DateTime,
+          ParamType.String,
         ),
         'productIdentifier': serializeParam(
           _productIdentifier,
@@ -141,7 +141,7 @@ class CustomerInfoStruct extends FFFirebaseStruct {
         ),
         'expirationDate': serializeParam(
           _expirationDate,
-          ParamType.DateTime,
+          ParamType.String,
         ),
         'productPlanIdentifier': serializeParam(
           _productPlanIdentifier,
@@ -163,12 +163,12 @@ class CustomerInfoStruct extends FFFirebaseStruct {
         ),
         latestPurchaseDate: deserializeParam(
           data['latestPurchaseDate'],
-          ParamType.DateTime,
+          ParamType.String,
           false,
         ),
         originalPurchaseDate: deserializeParam(
           data['originalPurchaseDate'],
-          ParamType.DateTime,
+          ParamType.String,
           false,
         ),
         productIdentifier: deserializeParam(
@@ -183,7 +183,7 @@ class CustomerInfoStruct extends FFFirebaseStruct {
         ),
         expirationDate: deserializeParam(
           data['expirationDate'],
-          ParamType.DateTime,
+          ParamType.String,
           false,
         ),
         productPlanIdentifier: deserializeParam(
@@ -225,11 +225,11 @@ class CustomerInfoStruct extends FFFirebaseStruct {
 CustomerInfoStruct createCustomerInfoStruct({
   bool? isActive,
   bool? willRenew,
-  DateTime? latestPurchaseDate,
-  DateTime? originalPurchaseDate,
+  String? latestPurchaseDate,
+  String? originalPurchaseDate,
   String? productIdentifier,
   String? store,
-  DateTime? expirationDate,
+  String? expirationDate,
   String? productPlanIdentifier,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,

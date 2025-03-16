@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -134,7 +135,7 @@ class _SubscribedViewWidgetState extends State<SubscribedViewWidget> {
                                       ),
                                 ),
                                 Text(
-                                  '${dateTimeFormat("yMMMd", FFAppState().customerInfo.originalPurchaseDate)} ${dateTimeFormat("jm", FFAppState().customerInfo.originalPurchaseDate)}',
+                                  '${dateTimeFormat("MMMEd", functions.getDateTime(FFAppState().customerInfo.originalPurchaseDate))} ${dateTimeFormat("jm", functions.getDateTime(FFAppState().customerInfo.originalPurchaseDate))}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -163,7 +164,7 @@ class _SubscribedViewWidgetState extends State<SubscribedViewWidget> {
                                       ),
                                 ),
                                 Text(
-                                  '${dateTimeFormat("yMMMd", FFAppState().customerInfo.expirationDate)} ${dateTimeFormat("jm", FFAppState().customerInfo.expirationDate)}',
+                                  '${dateTimeFormat("MMMEd", functions.getDateTime(FFAppState().customerInfo.expirationDate))} ${dateTimeFormat("jm", functions.getDateTime(FFAppState().customerInfo.expirationDate))}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
