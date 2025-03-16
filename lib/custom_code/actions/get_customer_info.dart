@@ -12,30 +12,17 @@ import 'package:flutter/material.dart';
 
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-Future<bool> checkIfUserIsSubscribed() async {
+Future<CustomerInfoStruct> getCustomerInfo() async {
   try {
     // Fetch the customer info
     CustomerInfo customerInfo = await Purchases.getCustomerInfo();
 
-    // Check if there are any active entitlements
-    if (customerInfo.entitlements.active.isNotEmpty) {
-      // User has active entitlements (subscriptions)
-
-      FFAppState().isSubscribed = true;
-      FFAppState().customerInfo = CustomerInfoStruct.fromMap(
-          customerInfo.entitlements.all['Pro']!.toJson());
-      return true;
-    } else {
-      // No active subscriptions
-      FFAppState().isSubscribed = false;
-      FFAppState().customerInfo = CustomerInfoStruct.fromMap(
-          customerInfo.entitlements.all['Pro']!.toJson());
-      return false;
-    }
+    return CustomerInfoStruct.fromMap(
+        customerInfo.entitlements.all['Pro']!.toJson());
   } catch (e) {
     // Handle error
     print("Error fetching customer info: $e");
-    return false;
+    return CustomerInfoStruct();
   }
 }
 

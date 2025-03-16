@@ -29,6 +29,6 @@ class EpisodesRow extends SupabaseDataRow {
   int get episodeNumber => getField<int>('episode_number')!;
   set episodeNumber(int value) => setField<int>('episode_number', value);
 
-  String? get thumbnail => getField<String>('thumbnail');
-  set thumbnail(String? value) => setField<String>('thumbnail', value);
+  bool get isTrailer => getField<bool>('is_trailer')!;
+  set isTrailer(bool value) => setField<bool>('is_trailer', value);
 }

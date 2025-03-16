@@ -42,6 +42,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -287,7 +289,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed(SubscribtionWidget.routeName);
+                            if (FFAppState().isSubscribed) {
+                              context.pushNamed(SubscribedViewWidget.routeName);
+                            } else {
+                              context
+                                  .pushNamed(SubscribtionViewWidget.routeName);
+                            }
                           },
                           child: wrapWithModel(
                             model: _model.profileOptionCardWithArrowModel2,

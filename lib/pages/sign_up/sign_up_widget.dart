@@ -547,10 +547,45 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
-                          child: wrapWithModel(
-                            model: _model.signInWithGoogleModel,
-                            updateCallback: () => safeSetState(() {}),
-                            child: SignInWithGoogleWidget(),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              GoRouter.of(context).prepareAuthEvent();
+                              final user =
+                                  await authManager.signInWithGoogle(context);
+                              if (user == null) {
+                                return;
+                              }
+                              _model.profiles = await ProfileTable().queryRows(
+                                queryFn: (q) => q.eqOrNull(
+                                  'email',
+                                  currentUserEmail,
+                                ),
+                              );
+                              if (!(_model.profiles != null &&
+                                  (_model.profiles)!.isNotEmpty)) {
+                                await ProfileTable().insert({
+                                  'created_at': supaSerialize<DateTime>(
+                                      getCurrentTimestamp),
+                                  'email': currentUserEmail,
+                                  'id': currentUserUid,
+                                });
+                              }
+
+                              context.goNamedAuth(
+                                  SeriesTitleViewWidget.routeName,
+                                  context.mounted);
+
+                              safeSetState(() {});
+                            },
+                            child: wrapWithModel(
+                              model: _model.signInWithGoogleModel,
+                              updateCallback: () => safeSetState(() {}),
+                              child: SignInWithGoogleWidget(),
+                            ),
                           ),
                         ),
                       ],

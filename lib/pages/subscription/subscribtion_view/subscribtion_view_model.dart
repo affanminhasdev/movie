@@ -4,14 +4,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import '/index.dart';
-import 'subscribtion_widget.dart' show SubscribtionWidget;
+import 'subscribtion_view_widget.dart' show SubscribtionViewWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class SubscribtionModel extends FlutterFlowModel<SubscribtionWidget> {
+class SubscribtionViewModel extends FlutterFlowModel<SubscribtionViewWidget> {
   ///  State fields for stateful widgets in this page.
 
   // Model for SubscriptionCard component.

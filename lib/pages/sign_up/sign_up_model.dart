@@ -36,6 +36,8 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
       signUpConfirmPassTextControllerValidator;
   // Model for SignInWithGoogle component.
   late SignInWithGoogleModel signInWithGoogleModel;
+  // Stores action output result for [Backend Call - Query Rows] action in SignInWithGoogle widget.
+  List<ProfileRow>? profiles;
 
   @override
   void initState(BuildContext context) {

@@ -13,7 +13,8 @@ export '/pages/profile/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/bookark/bookark_widget.dart' show BookarkWidget;
 export '/pages/history/history_widget.dart' show HistoryWidget;
 export '/pages/profile/settings/settings_widget.dart' show SettingsWidget;
-export '/pages/subscribtion/subscribtion_widget.dart' show SubscribtionWidget;
+export '/pages/subscription/subscribtion_view/subscribtion_view_widget.dart'
+    show SubscribtionViewWidget;
 export '/pages/movie/movies_view/movies_view_widget.dart' show MoviesViewWidget;
 export '/pages/movie/movie_detail_view/movie_detail_view_widget.dart'
     show MovieDetailViewWidget;
@@ -29,3 +30,5 @@ export '/pages/profile/privacy_policy/privacy_policy_widget.dart'
 export '/pages/profile/change_password/change_password_widget.dart'
     show ChangePasswordWidget;
 export '/splash_screen/splash_screen_widget.dart' show SplashScreenWidget;
+export '/pages/subscription/subscribed_view/subscribed_view_widget.dart'
+    show SubscribedViewWidget;

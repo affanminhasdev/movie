@@ -187,9 +187,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SettingsWidget(),
         ),
         FFRoute(
-          name: SubscribtionWidget.routeName,
-          path: SubscribtionWidget.routePath,
-          builder: (context, params) => SubscribtionWidget(),
+          name: SubscribtionViewWidget.routeName,
+          path: SubscribtionViewWidget.routePath,
+          builder: (context, params) => SubscribtionViewWidget(),
         ),
         FFRoute(
           name: MoviesViewWidget.routeName,
@@ -253,6 +253,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: SplashScreenWidget.routeName,
           path: SplashScreenWidget.routePath,
           builder: (context, params) => SplashScreenWidget(),
+        ),
+        FFRoute(
+          name: SubscribedViewWidget.routeName,
+          path: SubscribedViewWidget.routePath,
+          builder: (context, params) => SubscribedViewWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -440,12 +445,11 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: FlutterFlowTheme.of(context).secondary,
+                  color: Colors.black,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/pataka_logo.png',
-                      width: 120.0,
-                      height: 120.0,
+                      'assets/images/PP_Logoblackg.png',
+                      width: 100.0,
                       fit: BoxFit.cover,
                     ),
                   ),

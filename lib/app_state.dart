@@ -51,6 +51,16 @@ class FFAppState extends ChangeNotifier {
   set isSubscribed(bool value) {
     _isSubscribed = value;
   }
+
+  CustomerInfoStruct _customerInfo = CustomerInfoStruct();
+  CustomerInfoStruct get customerInfo => _customerInfo;
+  set customerInfo(CustomerInfoStruct value) {
+    _customerInfo = value;
+  }
+
+  void updateCustomerInfoStruct(Function(CustomerInfoStruct) updateFn) {
+    updateFn(_customerInfo);
+  }
 }
 
 void _safeInit(Function() initializeField) {

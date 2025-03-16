@@ -4,33 +4,34 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'subscribtion_model.dart';
-export 'subscribtion_model.dart';
+import 'subscribtion_view_model.dart';
+export 'subscribtion_view_model.dart';
 
-class SubscribtionWidget extends StatefulWidget {
-  const SubscribtionWidget({super.key});
+class SubscribtionViewWidget extends StatefulWidget {
+  const SubscribtionViewWidget({super.key});
 
-  static String routeName = 'Subscribtion';
-  static String routePath = '/subscribtion';
+  static String routeName = 'SubscribtionView';
+  static String routePath = '/subscribtionView';
 
   @override
-  State<SubscribtionWidget> createState() => _SubscribtionWidgetState();
+  State<SubscribtionViewWidget> createState() => _SubscribtionViewWidgetState();
 }
 
-class _SubscribtionWidgetState extends State<SubscribtionWidget> {
-  late SubscribtionModel _model;
+class _SubscribtionViewWidgetState extends State<SubscribtionViewWidget> {
+  late SubscribtionViewModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SubscribtionModel());
+    _model = createModel(context, () => SubscribtionViewModel());
   }
 
   @override
@@ -136,6 +137,7 @@ class _SubscribtionWidgetState extends State<SubscribtionWidget> {
                         );
                         FFAppState().isSubscribed = true;
                         safeSetState(() {});
+                        await actions.checkIfUserIsSubscribed();
 
                         context.pushNamed(SeriesTitleViewWidget.routeName);
                       } else {

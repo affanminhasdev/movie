@@ -364,16 +364,26 @@ class _SignInWidgetState extends State<SignInWidget> {
                             if (user == null) {
                               return;
                             }
-                            await ProfileTable().insert({
-                              'created_at':
-                                  supaSerialize<DateTime>(getCurrentTimestamp),
-                              'email': currentUserEmail,
-                              'id': currentUserUid,
-                            });
+                            _model.profile = await ProfileTable().queryRows(
+                              queryFn: (q) => q.eqOrNull(
+                                'email',
+                                currentUserEmail,
+                              ),
+                            );
+                            if (!(_model.profile != null &&
+                                (_model.profile)!.isNotEmpty)) {
+                              await ProfileTable().insert({
+                                'created_at': supaSerialize<DateTime>(
+                                    getCurrentTimestamp),
+                                'email': currentUserEmail,
+                                'id': currentUserUid,
+                              });
+                            }
 
-                            context.pushNamedAuth(
-                                SeriesTitleViewWidget.routeName,
+                            context.goNamedAuth(SeriesTitleViewWidget.routeName,
                                 context.mounted);
+
+                            safeSetState(() {});
                           },
                           child: wrapWithModel(
                             model: _model.signInWithGoogleModel,

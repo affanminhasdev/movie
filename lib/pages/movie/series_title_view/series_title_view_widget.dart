@@ -89,13 +89,17 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                       children: [
                         Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/images/pataka_logo.png',
-                              width: 100.0,
-                              height: 100.0,
-                              fit: BoxFit.cover,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 20.0, 0.0, 20.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                'assets/images/pataka_logo.png',
+                                width: 100.0,
+                                height: 100.0,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -131,7 +135,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              hintText: 'Search series',
+                              hintText: 'Search Series',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .bodySmall
                                   .override(
@@ -187,6 +191,22 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                 .asValidator(context),
                           ),
                         ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 35.0, 0.0, 35.0),
+                            child: Text(
+                              'HOT RELEASE',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: 'Poppins',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
                         if (_model.searchSeriesTextController.text != null &&
                             _model.searchSeriesTextController.text != '')
                           Padding(
@@ -206,7 +226,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                           .contains(seriesItem.title),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 15.0),
+                                            0.0, 0.0, 0.0, 20.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -244,54 +264,57 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(18.0),
                                             ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0),
-                                                  child: CachedNetworkImage(
-                                                    fadeInDuration: Duration(
-                                                        milliseconds: 500),
-                                                    fadeOutDuration: Duration(
-                                                        milliseconds: 500),
-                                                    imageUrl:
-                                                        valueOrDefault<String>(
-                                                      seriesItem.thumbnail,
-                                                      'https://picsum.photos/seed/165/600',
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            18.0),
+                                                    child: CachedNetworkImage(
+                                                      fadeInDuration: Duration(
+                                                          milliseconds: 500),
+                                                      fadeOutDuration: Duration(
+                                                          milliseconds: 500),
+                                                      imageUrl: valueOrDefault<
+                                                          String>(
+                                                        seriesItem.thumbnail,
+                                                        'https://picsum.photos/seed/165/600',
+                                                      ),
+                                                      width: double.infinity,
+                                                      height: 300.0,
+                                                      fit: BoxFit.fitWidth,
                                                     ),
-                                                    width: double.infinity,
-                                                    height: 300.0,
-                                                    fit: BoxFit.fitWidth,
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 15.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    valueOrDefault<String>(
-                                                      seriesItem.title,
-                                                      'Title',
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 15.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        seriesItem.title,
+                                                        'Title',
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: Colors.white,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -302,6 +325,26 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                               },
                             ),
                           ),
+                        Opacity(
+                          opacity: 0.6,
+                          child: Divider(
+                            thickness: 1.0,
+                            color: Color(0x73A9AAAC),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 35.0, 0.0, 35.0),
+                          child: Text(
+                            'UPCOMING RELEASE',
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
                         if (_model.searchSeriesTextController.text == null ||
                             _model.searchSeriesTextController.text == '')
                           Padding(
@@ -318,7 +361,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                     final seriesItem = series[seriesIndex];
                                     return Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 15.0),
+                                          0.0, 0.0, 0.0, 20.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -345,7 +388,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                         },
                                         child: Container(
                                           width: double.infinity,
-                                          height: 250.0,
+                                          height: 350.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -369,7 +412,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                                     'https://picsum.photos/seed/165/600',
                                                   ),
                                                   width: double.infinity,
-                                                  height: 200.0,
+                                                  height: 300.0,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
@@ -387,11 +430,14 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Poppins',
-                                                        color: Colors.white,
-                                                        fontSize: 16.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
-                                                            FontWeight.w100,
+                                                            FontWeight.normal,
                                                       ),
                                                 ),
                                               ),
