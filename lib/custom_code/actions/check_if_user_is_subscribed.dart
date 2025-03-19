@@ -17,6 +17,8 @@ Future<bool> checkIfUserIsSubscribed() async {
     // Fetch the customer info
     CustomerInfo customerInfo = await Purchases.getCustomerInfo();
 
+    print('User check info: ${customerInfo.toJson()}');
+
     // Check if there are any active entitlements
     if (customerInfo.entitlements.active.isNotEmpty) {
       // User has active entitlements (subscriptions)

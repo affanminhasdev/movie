@@ -28,6 +28,8 @@ class SeriesTitleViewModel extends FlutterFlowModel<SeriesTitleViewWidget> {
   // Stores action output result for [Custom Action - checkIfUserIsSubscribed] action in SeriesTitleView widget.
   bool? subscriptionTest;
   // Stores action output result for [Backend Call - Query Rows] action in SeriesTitleView widget.
+  List<ProfileRow>? userProfile;
+  // Stores action output result for [Backend Call - Query Rows] action in SeriesTitleView widget.
   List<SeriesRow>? allSeries;
   // State field(s) for SearchSeries widget.
   FocusNode? searchSeriesFocusNode;

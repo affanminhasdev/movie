@@ -122,36 +122,36 @@ class _VideoThumbnailViewState extends State<VideoThumbnailView> {
             },
           ),
           const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.video.title,
-                  style: const TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: [
-                    Text(
-                      '${widget.video.views} views',
-                      style: const TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 6),
-                      child: CircleAvatar(
-                          radius: 1.5, backgroundColor: Colors.white),
-                    ),
-                    Text(
-                      timeago.format(DateTime.parse(widget.video.dateUploaded)),
-                      style: const TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Text(
+          //         widget.video.title,
+          //         style: const TextStyle(color: Colors.white, fontSize: 16),
+          //       ),
+          //       const SizedBox(height: 6),
+          //       Row(
+          //         children: [
+          //           Text(
+          //             '${widget.video.views} views',
+          //             style: const TextStyle(color: Colors.white, fontSize: 12),
+          //           ),
+          //           const Padding(
+          //             padding: EdgeInsets.symmetric(horizontal: 6),
+          //             child: CircleAvatar(
+          //                 radius: 1.5, backgroundColor: Colors.white),
+          //           ),
+          //           Text(
+          //             timeago.format(DateTime.parse(widget.video.dateUploaded)),
+          //             style: const TextStyle(color: Colors.white, fontSize: 12),
+          //           ),
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

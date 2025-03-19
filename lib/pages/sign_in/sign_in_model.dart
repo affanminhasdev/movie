@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/already_signed_in_widget.dart';
 import '/components/sign_in_with_google_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,6 +25,8 @@ class SignInModel extends FlutterFlowModel<SignInWidget> {
   TextEditingController? signInPassTextController;
   late bool signInPassVisibility;
   String? Function(BuildContext, String?)? signInPassTextControllerValidator;
+  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
+  List<ProfileRow>? userProfile;
   // Model for SignInWithGoogle component.
   late SignInWithGoogleModel signInWithGoogleModel;
   // Stores action output result for [Backend Call - Query Rows] action in SignInWithGoogle widget.

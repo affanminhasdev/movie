@@ -1,10 +1,11 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/components/subscription_card/subscription_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -107,9 +108,8 @@ class _SubscribtionViewWidgetState extends State<SubscribtionViewWidget> {
                     updateCallback: () => safeSetState(() {}),
                     child: SubscriptionCardWidget(
                       color: FlutterFlowTheme.of(context).warningOld,
-                      price: revenue_cat
-                          .offerings!.current!.monthly!.storeProduct.price
-                          .toString(),
+                      price: revenue_cat.offerings!.current!.monthly!
+                          .storeProduct.priceString,
                       isSelected: true,
                     ),
                   ),
@@ -137,7 +137,17 @@ class _SubscribtionViewWidgetState extends State<SubscribtionViewWidget> {
                         );
                         FFAppState().isSubscribed = true;
                         safeSetState(() {});
-                        await actions.checkIfUserIsSubscribed();
+                        await ProfileTable().update(
+                          data: {
+                            'is_subscribed': true,
+                            'subscribed_at':
+                                supaSerialize<DateTime>(getCurrentTimestamp),
+                          },
+                          matchingRows: (rows) => rows.eqOrNull(
+                            'id',
+                            currentUserUid,
+                          ),
+                        );
 
                         context.pushNamed(SeriesTitleViewWidget.routeName);
                       } else {

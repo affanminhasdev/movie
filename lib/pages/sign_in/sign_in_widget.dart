@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/already_signed_in_widget.dart';
 import '/components/sign_in_with_google_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -289,109 +290,149 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                         ],
                       ),
-                      FFButtonWidget(
-                        onPressed: () async {
-                          if (_model.formKey.currentState == null ||
-                              !_model.formKey.currentState!.validate()) {
-                            return;
-                          }
-                          GoRouter.of(context).prepareAuthEvent();
-
-                          final user = await authManager.signInWithEmail(
-                            context,
-                            _model.signInEmailTextController.text,
-                            _model.signInPassTextController.text,
-                          );
-                          if (user == null) {
-                            return;
-                          }
-
-                          context.goNamedAuth(
-                              SeriesTitleViewWidget.routeName, context.mounted);
-                        },
-                        text: 'Sign in',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 44.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                          elevation: 2.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      Container(
-                        width: 100.0,
-                        height: 15.89,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                      ),
-                      Text(
-                        'OR',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
+                      Builder(
+                        builder: (context) => FFButtonWidget(
+                          onPressed: () async {
+                            if (_model.formKey.currentState == null ||
+                                !_model.formKey.currentState!.validate()) {
+                              return;
+                            }
                             GoRouter.of(context).prepareAuthEvent();
-                            final user =
-                                await authManager.signInWithGoogle(context);
+
+                            final user = await authManager.signInWithEmail(
+                              context,
+                              _model.signInEmailTextController.text,
+                              _model.signInPassTextController.text,
+                            );
                             if (user == null) {
                               return;
                             }
-                            _model.profile = await ProfileTable().queryRows(
+
+                            _model.userProfile = await ProfileTable().queryRows(
                               queryFn: (q) => q.eqOrNull(
                                 'email',
                                 currentUserEmail,
                               ),
                             );
-                            if (!(_model.profile != null &&
-                                (_model.profile)!.isNotEmpty)) {
-                              await ProfileTable().insert({
-                                'created_at': supaSerialize<DateTime>(
-                                    getCurrentTimestamp),
-                                'email': currentUserEmail,
-                                'id': currentUserUid,
-                              });
-                            }
+                            if (_model.userProfile!.firstOrNull!.isSignedIn!) {
+                              GoRouter.of(context).prepareAuthEvent();
+                              await authManager.signOut();
+                              GoRouter.of(context).clearRedirectLocation();
 
-                            context.goNamedAuth(SeriesTitleViewWidget.routeName,
-                                context.mounted);
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        FocusScope.of(dialogContext).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
+                                      child: Container(
+                                        height: 300.0,
+                                        width: 200.0,
+                                        child: AlreadySignedInWidget(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            } else {
+                              await ProfileTable().update(
+                                data: {
+                                  'is_signed_in': true,
+                                },
+                                matchingRows: (rows) => rows.eqOrNull(
+                                  'id',
+                                  currentUserUid,
+                                ),
+                              );
+
+                              context.goNamedAuth(
+                                  SeriesTitleViewWidget.routeName,
+                                  context.mounted);
+                            }
 
                             safeSetState(() {});
                           },
-                          child: wrapWithModel(
-                            model: _model.signInWithGoogleModel,
-                            updateCallback: () => safeSetState(() {}),
-                            child: SignInWithGoogleWidget(),
+                          text: 'Sign in',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 44.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                            elevation: 2.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
+                      if (false)
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              GoRouter.of(context).prepareAuthEvent();
+                              final user =
+                                  await authManager.signInWithGoogle(context);
+                              if (user == null) {
+                                return;
+                              }
+                              _model.profile = await ProfileTable().queryRows(
+                                queryFn: (q) => q.eqOrNull(
+                                  'email',
+                                  currentUserEmail,
+                                ),
+                              );
+                              if (!(_model.profile != null &&
+                                  (_model.profile)!.isNotEmpty)) {
+                                await ProfileTable().insert({
+                                  'created_at': supaSerialize<DateTime>(
+                                      getCurrentTimestamp),
+                                  'email': currentUserEmail,
+                                  'id': currentUserUid,
+                                });
+                              }
+
+                              context.goNamedAuth(
+                                  SeriesTitleViewWidget.routeName,
+                                  context.mounted);
+
+                              safeSetState(() {});
+                            },
+                            child: wrapWithModel(
+                              model: _model.signInWithGoogleModel,
+                              updateCallback: () => safeSetState(() {}),
+                              child: SignInWithGoogleWidget(),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),

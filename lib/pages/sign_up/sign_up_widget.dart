@@ -528,66 +528,52 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
-                        Container(
-                          width: 100.0,
-                          height: 24.69,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                        ),
-                        Text(
-                          'Or',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Poppins',
-                                    letterSpacing: 0.0,
+                        if (false)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 15.0, 0.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                GoRouter.of(context).prepareAuthEvent();
+                                final user =
+                                    await authManager.signInWithGoogle(context);
+                                if (user == null) {
+                                  return;
+                                }
+                                _model.profiles =
+                                    await ProfileTable().queryRows(
+                                  queryFn: (q) => q.eqOrNull(
+                                    'email',
+                                    currentUserEmail,
                                   ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 15.0, 0.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              GoRouter.of(context).prepareAuthEvent();
-                              final user =
-                                  await authManager.signInWithGoogle(context);
-                              if (user == null) {
-                                return;
-                              }
-                              _model.profiles = await ProfileTable().queryRows(
-                                queryFn: (q) => q.eqOrNull(
-                                  'email',
-                                  currentUserEmail,
-                                ),
-                              );
-                              if (!(_model.profiles != null &&
-                                  (_model.profiles)!.isNotEmpty)) {
-                                await ProfileTable().insert({
-                                  'created_at': supaSerialize<DateTime>(
-                                      getCurrentTimestamp),
-                                  'email': currentUserEmail,
-                                  'id': currentUserUid,
-                                });
-                              }
+                                );
+                                if (!(_model.profiles != null &&
+                                    (_model.profiles)!.isNotEmpty)) {
+                                  await ProfileTable().insert({
+                                    'created_at': supaSerialize<DateTime>(
+                                        getCurrentTimestamp),
+                                    'email': currentUserEmail,
+                                    'id': currentUserUid,
+                                  });
+                                }
 
-                              context.goNamedAuth(
-                                  SeriesTitleViewWidget.routeName,
-                                  context.mounted);
+                                context.goNamedAuth(
+                                    SeriesTitleViewWidget.routeName,
+                                    context.mounted);
 
-                              safeSetState(() {});
-                            },
-                            child: wrapWithModel(
-                              model: _model.signInWithGoogleModel,
-                              updateCallback: () => safeSetState(() {}),
-                              child: SignInWithGoogleWidget(),
+                                safeSetState(() {});
+                              },
+                              child: wrapWithModel(
+                                model: _model.signInWithGoogleModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: SignInWithGoogleWidget(),
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),

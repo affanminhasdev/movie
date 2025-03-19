@@ -23,8 +23,8 @@ class ProfileRow extends SupabaseDataRow {
   String? get email => getField<String>('email');
   set email(String? value) => setField<String>('email', value);
 
-  String? get id => getField<String>('id');
-  set id(String? value) => setField<String>('id', value);
+  String get id => getField<String>('id')!;
+  set id(String value) => setField<String>('id', value);
 
   String? get username => getField<String>('username');
   set username(String? value) => setField<String>('username', value);
@@ -34,4 +34,14 @@ class ProfileRow extends SupabaseDataRow {
 
   DateTime? get updatedAt => getField<DateTime>('updated_at');
   set updatedAt(DateTime? value) => setField<DateTime>('updated_at', value);
+
+  bool? get isSignedIn => getField<bool>('is_signed_in');
+  set isSignedIn(bool? value) => setField<bool>('is_signed_in', value);
+
+  bool? get isSubscribed => getField<bool>('is_subscribed');
+  set isSubscribed(bool? value) => setField<bool>('is_subscribed', value);
+
+  DateTime? get subscribedAt => getField<DateTime>('subscribed_at');
+  set subscribedAt(DateTime? value) =>
+      setField<DateTime>('subscribed_at', value);
 }

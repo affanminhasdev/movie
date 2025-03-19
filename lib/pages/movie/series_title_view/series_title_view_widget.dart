@@ -42,7 +42,14 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.subscriptionTest = await actions.checkIfUserIsSubscribed();
-      FFAppState().isSubscribed = _model.subscriptionTest!;
+      _model.userProfile = await ProfileTable().queryRows(
+        queryFn: (q) => q.eqOrNull(
+          'id',
+          currentUserUid,
+        ),
+      );
+      FFAppState().isSubscribed =
+          _model.userProfile!.firstOrNull!.isSubscribed!;
       FFAppState().update(() {});
       _model.isLoading = true;
       safeSetState(() {});
@@ -193,7 +200,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 5.0, 0.0, 0.0),
+                              0.0, 35.0, 0.0, 35.0),
                           child: Text(
                             'HOT RELEASE',
                             textAlign: TextAlign.center,
@@ -254,7 +261,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                           },
                                           child: Container(
                                             width: double.infinity,
-                                            height: 350.0,
+                                            height: 296.72,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -262,57 +269,50 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(18.0),
                                             ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 1.0, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            18.0),
-                                                    child: CachedNetworkImage(
-                                                      fadeInDuration: Duration(
-                                                          milliseconds: 500),
-                                                      fadeOutDuration: Duration(
-                                                          milliseconds: 500),
-                                                      imageUrl: valueOrDefault<
-                                                          String>(
-                                                        seriesItem.thumbnail,
-                                                        'https://picsum.photos/seed/165/600',
-                                                      ),
-                                                      width: double.infinity,
-                                                      height: 300.0,
-                                                      fit: BoxFit.fitWidth,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  child: CachedNetworkImage(
+                                                    fadeInDuration: Duration(
+                                                        milliseconds: 500),
+                                                    fadeOutDuration: Duration(
+                                                        milliseconds: 500),
+                                                    imageUrl:
+                                                        valueOrDefault<String>(
+                                                      seriesItem.thumbnail,
+                                                      'https://picsum.photos/seed/165/600',
                                                     ),
+                                                    width: double.infinity,
+                                                    height: 250.0,
+                                                    fit: BoxFit.fitWidth,
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 15.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      valueOrDefault<String>(
-                                                        seriesItem.title,
-                                                        'Title',
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            letterSpacing: 0.0,
-                                                          ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 15.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      seriesItem.title,
+                                                      'Title',
                                                     ),
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -386,7 +386,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                         },
                                         child: Container(
                                           width: double.infinity,
-                                          height: 350.0,
+                                          height: 300.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -410,7 +410,7 @@ class _SeriesTitleViewWidgetState extends State<SeriesTitleViewWidget> {
                                                     'https://picsum.photos/seed/165/600',
                                                   ),
                                                   width: double.infinity,
-                                                  height: 300.0,
+                                                  height: 250.0,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),

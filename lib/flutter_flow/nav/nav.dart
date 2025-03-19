@@ -445,11 +445,11 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.black,
+                  color: FlutterFlowTheme.of(context).secondary,
                   child: Center(
                     child: Image.asset(
                       'assets/images/PP_Logoblackg.png',
-                      width: 100.0,
+                      width: 125.0,
                       fit: BoxFit.cover,
                     ),
                   ),
