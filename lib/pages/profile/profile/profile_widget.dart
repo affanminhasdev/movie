@@ -352,6 +352,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              await ProfileTable().update(
+                                data: {
+                                  'is_signed_in': false,
+                                },
+                                matchingRows: (rows) => rows.eqOrNull(
+                                  'id',
+                                  currentUserUid,
+                                ),
+                              );
                               GoRouter.of(context).prepareAuthEvent();
                               await authManager.signOut();
                               GoRouter.of(context).clearRedirectLocation();
