@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/revenue_cat_util.dart' as revenue_cat;
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -142,6 +143,8 @@ class _SubscribtionViewWidgetState extends State<SubscribtionViewWidget> {
                             'is_subscribed': true,
                             'subscribed_at':
                                 supaSerialize<DateTime>(getCurrentTimestamp),
+                            'subscription_expires_at': supaSerialize<DateTime>(
+                                functions.addHours(getCurrentTimestamp, 30)),
                           },
                           matchingRows: (rows) => rows.eqOrNull(
                             'id',

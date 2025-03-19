@@ -45,3 +45,10 @@ String getBunnyVideoURL(VideoItemStruct videoItem) {
 DateTime getDateTime(String datetime) {
   return DateTime.parse(datetime);
 }
+
+DateTime addHours(
+  DateTime date,
+  int days,
+) {
+  return date.add(Duration(days: days));
+}

@@ -44,4 +44,9 @@ class ProfileRow extends SupabaseDataRow {
   DateTime? get subscribedAt => getField<DateTime>('subscribed_at');
   set subscribedAt(DateTime? value) =>
       setField<DateTime>('subscribed_at', value);
+
+  DateTime? get subscriptionExpiresAt =>
+      getField<DateTime>('subscription_expires_at');
+  set subscriptionExpiresAt(DateTime? value) =>
+      setField<DateTime>('subscription_expires_at', value);
 }
