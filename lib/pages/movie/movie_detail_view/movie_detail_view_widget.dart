@@ -229,7 +229,7 @@ class _MovieDetailViewWidgetState extends State<MovieDetailViewWidget> {
                                                 video: seriesVideoItem,
                                               ),
                                             ),
-                                            if (FFAppState().isSubscribed)
+                                            if (!FFAppState().isSubscribed)
                                               Opacity(
                                                 opacity: 0.6,
                                                 child: Container(
